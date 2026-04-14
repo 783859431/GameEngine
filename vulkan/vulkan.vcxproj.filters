@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\imgui">
+      <UniqueIdentifier>{9a684691-ee34-41b3-8f6a-74a3716ce93a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\imgui">
+      <UniqueIdentifier>{e11d4ac5-4ff4-489f-b7b5-e0d6ff90a058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\image">
+      <UniqueIdentifier>{7e1a23bf-08ae-42ae-a158-ba4638b75cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\input">
+      <UniqueIdentifier>{cbe3b9ae-6503-4e0c-990d-1ce293199efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\input">
+      <UniqueIdentifier>{8070f5ae-c519-4fb7-88c7-aadef4aa311f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\memory">
+      <UniqueIdentifier>{9e9772fb-fa7b-4df2-9116-cc2c462c449a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\memory">
+      <UniqueIdentifier>{82b6b6c7-4e84-4c3e-a95d-43bde155bf9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\utils">
+      <UniqueIdentifier>{73764e05-d255-40ac-b5f8-7cf3da6d44c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\utils">
+      <UniqueIdentifier>{93e3716d-8a53-4f1f-973b-2c4c35273a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\template">
+      <UniqueIdentifier>{dc2040ec-e0e0-4ef7-b35f-447c97e11b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\engine">
+      <UniqueIdentifier>{8f65e240-7268-467b-ab2f-cc844996235a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\engine">
+      <UniqueIdentifier>{57bb68ec-be60-4e81-bc67-a7cd053503a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\wrapper">
+      <UniqueIdentifier>{5c57baea-9df9-43ca-ac43-bb947e91e813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\wrapper">
+      <UniqueIdentifier>{5093c923-bea4-4f84-8f3b-6f9b18253446}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\gui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui_draw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui_impl_glfw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui_impl_vulkan.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui_tables.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\imgui\imgui_widgets.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="StagingBuffer.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformBuffer.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandBuffer.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipeline.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>源文件\input</Filter>
+    </ClCompile>
+    <ClCompile Include="DescriptorSetManager.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Allocator.cpp">
+      <Filter>源文件\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>源文件\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanEngine.cpp">
+      <Filter>源文件\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="glWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapChain.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>源文件\wrapper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment.frag" />
+    <None Include="vertex.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\gui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imgui.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imgui_impl_glfw.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imgui_impl_vulkan.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imgui_internal.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imconfig.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imstb_rectpack.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imstb_textedit.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\imgui\imstb_truetype.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>头文件\image</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>头文件\input</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="StagingBuffer.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformBuffer.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandBuffer.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="DescriptorSetManager.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Allocator.h">
+      <Filter>头文件\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>头文件\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>头文件\template</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanEngine.h">
+      <Filter>头文件\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="vk_mem_alloc.h">
+      <Filter>头文件\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="glWindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapChain.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
