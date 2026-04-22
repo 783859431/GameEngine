@@ -145,14 +145,18 @@ void FileUtils::SetSearchPaths(const std::vector<std::string>& searchPaths)
 
 
 }
-
+FileUtils* FileUtils::inst = 0;
 FileUtils* FileUtils::GetInst()
 {
+    if (inst == nullptr)
+    {
 #ifdef _WIN32
-   
-    static WinFileUtils instance;
-#else
-    assert(0);
-#endif
-    return &instance;
+        inst = new WinFileUtils();
+
+#endif // _WIN32
+      
+        inst->Init();
+    }
+    return inst;
+
 }

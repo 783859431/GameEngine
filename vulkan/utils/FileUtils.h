@@ -3,8 +3,11 @@
 #include <unordered_map>
 class FileUtils
 {
+	
+	
+	static FileUtils* inst;
 public:
-
+	
 	static FileUtils* GetInst();
 	virtual void Init() = 0;
 	virtual std::string GetFullPath(const char* filename) =0;

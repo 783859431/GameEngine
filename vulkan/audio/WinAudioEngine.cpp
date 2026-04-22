@@ -137,9 +137,10 @@ int WinAudioEngine::play2d(const std::string& filePath, bool loop, float volume)
     player->setCache(AudioData);
     _threadMutex.lock();
     _audioPlayers[_currentAudioID] = player;
+    _alSourceUsed[alSource] = true;
     _threadMutex.unlock();
 
-    _alSourceUsed[alSource] = true;
+  
 
    AudioData->addPlayCallBack(std::bind(&WinAudioEngine::_play2d, this, AudioData, _currentAudioID));//
 

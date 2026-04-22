@@ -28,7 +28,7 @@ void AudioData::addPlayCallBack(std::function<void()> call)
 }
 void AudioData::readDataTask(unsigned int selfId)
 {
-    _readDataTaskMutex.lock();
+    std::scoped_lock lock(_readDataTaskMutex);
     _state = State::LOADING;
 
     AudioDecoder* decoder = AudioDecoderFactory::createDecoder(_fileFullPath.c_str());
@@ -195,7 +195,7 @@ void AudioData::readDataTask(unsigned int selfId)
 
     invokingPlayCallbacks();
     _isLoadingFinished = true;
-    _readDataTaskMutex.unlock();
+
 }
 
 void AudioData::invokingPlayCallbacks()

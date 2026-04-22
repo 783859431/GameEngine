@@ -154,6 +154,11 @@ bool AudioEngine::lazyInit()
             _audioEngineImpl = nullptr;
             return false;
         }
+        if (_audioEngineImpl && s_threadPool == nullptr)
+        {
+            s_threadPool = new (std::nothrow) AudioEngineThreadPool();
+        }
+        return true;
     }
 
     return true;
@@ -173,7 +178,7 @@ int AudioEngine::play2d(const std::string& filePath, bool loop, float volume, co
             break;
         }
 
-        if (!FileUtils::GetInst()->IsDirExist(filePath)) //文件是否存在。
+        if (!FileUtils::GetInst()->IsFileExist(filePath)) //文件是否存在。
         {
             break;
         }

@@ -228,6 +228,7 @@ void WinFileUtils::Init()
     GetRuntimePath();
     _rootPath = runtimePath + "Resource/";
     _searchPathArray.push_back(_rootPath);
+   
 }
 
 std::string WinFileUtils::GetFullPath(const char* filename)
