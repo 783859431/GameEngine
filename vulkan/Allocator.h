@@ -9,12 +9,16 @@ struct AllocatedBuffer {
     uint32_t size;
     void* mapped;
 };
+
 struct AllocatedImage {
     VkImage img;
     VmaAllocation allocation;
     int width, height;
     uint32_t size; // bytes;
 };
+
+
+
 class Allocator: public Singleton<Allocator>
 {
     friend class Singleton<Allocator>;

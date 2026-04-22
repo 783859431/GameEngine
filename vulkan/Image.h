@@ -23,6 +23,7 @@ public:
     void ChangeImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
     void CreateImageView(VkFormat format);
     void FreeImageView();
+    void CreateEmptyImage(float w, float h);
     VkImage GetImage() {
         return allocImg.img;
     }

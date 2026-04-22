@@ -17,6 +17,7 @@ void Image::CreateGpuBuffer() {
 
     Allocator::Instance().AllocImage(allocImg);
 }
+
 void Image::CopyToGpu(char* imgRawData) {
 
     StagingBuffer stagingBuffer;
@@ -111,3 +112,17 @@ void Image::FreeImageView() {
     }
 
 }
+
+void Image::CreateEmptyImage(float w,float h)
+{
+    allocImg.width = w;
+    allocImg.height = h;
+    CreateGpuBuffer();
+
+
+}
+
+//void ClearImage(glm::vec4& color)
+//{
+//    vkCmdClearColorImage();
+//}

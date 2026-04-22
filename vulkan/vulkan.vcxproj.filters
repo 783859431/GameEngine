@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\imgui">
-      <UniqueIdentifier>{9a684691-ee34-41b3-8f6a-74a3716ce93a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\imgui">
-      <UniqueIdentifier>{e11d4ac5-4ff4-489f-b7b5-e0d6ff90a058}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\image">
       <UniqueIdentifier>{7e1a23bf-08ae-42ae-a158-ba4638b75cb4}</UniqueIdentifier>
     </Filter>
@@ -55,6 +49,21 @@
     <Filter Include="源文件\wrapper">
       <UniqueIdentifier>{5093c923-bea4-4f84-8f3b-6f9b18253446}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\imgui">
+      <UniqueIdentifier>{bf6bbd29-64fd-4a0e-99a8-921f362d7ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\imgui">
+      <UniqueIdentifier>{b093dcf4-a878-4181-9a1a-9377b65ef69f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\engine\input">
+      <UniqueIdentifier>{d1068381-6e31-4fb4-86b9-00749fddc4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\engine\render">
+      <UniqueIdentifier>{ee7fd311-63c0-42c3-9cf3-876de0a1c212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\engine\audio">
+      <UniqueIdentifier>{98fc8dba-feee-405c-8837-e9f03cdfe14d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,24 +83,6 @@
     </ClCompile>
     <ClCompile Include="Drawable.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_draw.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_impl_glfw.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_impl_vulkan.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_tables.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_widgets.cpp">
-      <Filter>源文件\imgui</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>源文件\wrapper</Filter>
@@ -147,6 +138,60 @@
     <ClCompile Include="Device.cpp">
       <Filter>源文件\wrapper</Filter>
     </ClCompile>
+    <ClCompile Include="utils\FileUtils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\WinFileUtils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui_draw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui_tables.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="threeparty\imgui\imgui_widgets.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioDecoder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\Mp3Decoder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\OggDecoder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioDecoderFactory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioPlayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="logger\Logger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\WinAudioEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\IAudioEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.frag" />
@@ -164,30 +209,6 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imgui.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_impl_glfw.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_impl_vulkan.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_internal.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imconfig.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_rectpack.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_textedit.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_truetype.h">
-      <Filter>头文件\imgui</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>头文件\image</Filter>
@@ -251,6 +272,66 @@
     </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>头文件\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\FileUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\WinFileUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imconfig.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imgui.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imgui_impl_glfw.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imgui_impl_vulkan.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imgui_internal.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imstb_rectpack.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imstb_textedit.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="threeparty\imgui\imstb_truetype.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioDecoder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\Mp3Decoder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\OggDecoder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioDecoderFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioPlayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="logger\Logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\WinAudioEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\IAudioEngine.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
