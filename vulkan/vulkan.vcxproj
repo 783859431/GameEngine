@@ -102,16 +102,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -120,9 +120,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,104 +130,108 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Allocator.cpp" />
-    <ClCompile Include="audio\AudioEngine.cpp" />
-    <ClCompile Include="audio\AudioData.cpp" />
-    <ClCompile Include="audio\AudioDecoder.cpp" />
-    <ClCompile Include="audio\AudioDecoderFactory.cpp" />
-    <ClCompile Include="audio\AudioPlayer.cpp" />
-    <ClCompile Include="audio\Mp3Decoder.cpp" />
-    <ClCompile Include="audio\OggDecoder.cpp" />
-    <ClCompile Include="audio\WinAudioEngine.cpp" />
-    <ClCompile Include="Camera.h" />
-    <ClCompile Include="Camera2D.cpp" />
-    <ClCompile Include="CommandBuffer.cpp" />
-    <ClCompile Include="DescriptorSetManager.cpp" />
-    <ClCompile Include="Device.cpp" />
-    <ClCompile Include="Drawable.cpp" />
-    <ClCompile Include="audio\IAudioEngine.cpp" />
-    <ClCompile Include="logger\Logger.cpp" />
+    <None Include="engine\render\shader\basic.frag" />
+    <None Include="engine\render\shader\basic.vert" />
+    <None Include="engine\render\shader\basicPBR.frag" />
+    <None Include="engine\render\shader\basicPBR.vert" />
+    <None Include="engine\render\shader\compile_shader.bat" />
+    <None Include="engine\render\shader\fragment.frag">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="engine\render\shader\sample.frag" />
+    <None Include="engine\render\shader\sample.vert" />
+    <None Include="engine\render\shader\vertex.vert">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\audio\AudioData.cpp" />
+    <ClCompile Include="engine\audio\AudioDecoder.cpp" />
+    <ClCompile Include="engine\audio\AudioDecoderFactory.cpp" />
+    <ClCompile Include="engine\audio\AudioEngine.cpp" />
+    <ClCompile Include="engine\audio\AudioPlayer.cpp" />
+    <ClCompile Include="engine\audio\IAudioEngine.cpp" />
+    <ClCompile Include="engine\audio\Mp3Decoder.cpp" />
+    <ClCompile Include="engine\audio\OggDecoder.cpp" />
+    <ClCompile Include="engine\audio\WinAudioEngine.cpp" />
+    <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\input\Input.cpp" />
+    <ClCompile Include="engine\render\Allocator.cpp" />
+    <ClCompile Include="engine\render\camera\Camera3D.cpp" />
+    <ClCompile Include="engine\render\CommandBuffer.cpp" />
+    <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
+    <ClCompile Include="engine\render\Device.cpp" />
+    <ClCompile Include="engine\render\Material.cpp" />
+    <ClCompile Include="engine\render\Texture.cpp" />
+    <ClCompile Include="engine\render\IndexBuffer.cpp" />
+    <ClCompile Include="engine\render\Pipeline.cpp" />
+    <ClCompile Include="engine\render\Sampler.cpp" />
+    <ClCompile Include="engine\render\Shader.cpp" />
+    <ClCompile Include="engine\render\StagingBuffer.cpp" />
+    <ClCompile Include="engine\render\SwapChain.cpp" />
+    <ClCompile Include="engine\render\UniformBuffer.cpp" />
+    <ClCompile Include="engine\render\VertexBuffer.cpp" />
+    <ClCompile Include="engine\utils\Utils.cpp" />
+    <ClCompile Include="engine\logger\Logger.cpp" />
+    <ClCompile Include="engine\utils\FileUtils.cpp" />
+    <ClCompile Include="engine\utils\WinFileUtils.cpp" />
+    <ClCompile Include="engine\window\glWindow.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="engine\render\3d\transform.cpp" />
+    <ClCompile Include="engine\render\3d\mesh.cpp" />
+    <ClCompile Include="engine\render\VObject.cpp" />
     <ClCompile Include="threeparty\imgui\imgui.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="utils\FileUtils.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="glWindow.cpp" />
-    <ClCompile Include="gui\gui.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="IndexBuffer.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Pipeline.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="StagingBuffer.cpp" />
-    <ClCompile Include="SwapChain.cpp" />
-    <ClCompile Include="UniformBuffer.cpp" />
-    <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="VObject.cpp" />
-    <ClCompile Include="VulkanEngine.cpp" />
-    <ClCompile Include="utils\WinFileUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment.frag" />
-    <None Include="vertex.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Allocator.h" />
-    <ClInclude Include="audio\AudioEngine.h" />
-    <ClInclude Include="audio\AudioData.h" />
-    <ClInclude Include="audio\AudioDecoder.h" />
-    <ClInclude Include="audio\AudioDecoderFactory.h" />
-    <ClInclude Include="audio\AudioPlayer.h" />
-    <ClInclude Include="audio\Mp3Decoder.h" />
-    <ClInclude Include="audio\OggDecoder.h" />
-    <ClInclude Include="audio\WinAudioEngine.h" />
-    <ClInclude Include="Camera2D.h" />
-    <ClInclude Include="CommandBuffer.h" />
-    <ClInclude Include="DescriptorSetManager.h" />
-    <ClInclude Include="Device.h" />
-    <ClInclude Include="Drawable.h" />
-    <ClInclude Include="audio\IAudioEngine.h" />
-    <ClInclude Include="logger\Logger.h" />
-    <ClInclude Include="threeparty\imgui\imconfig.h" />
-    <ClInclude Include="threeparty\imgui\imgui.h" />
-    <ClInclude Include="threeparty\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="threeparty\imgui\imgui_impl_vulkan.h" />
-    <ClInclude Include="threeparty\imgui\imgui_internal.h" />
-    <ClInclude Include="threeparty\imgui\imstb_rectpack.h" />
-    <ClInclude Include="threeparty\imgui\imstb_textedit.h" />
-    <ClInclude Include="threeparty\imgui\imstb_truetype.h" />
-    <ClInclude Include="utils\FileUtils.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="glWindow.h" />
-    <ClInclude Include="gui\gui.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="IndexBuffer.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Pipeline.h" />
-    <ClInclude Include="singleton.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="StagingBuffer.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="SwapChain.h" />
-    <ClInclude Include="UniformBuffer.h" />
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="vk_mem_alloc.h" />
-    <ClInclude Include="VObject.h" />
-    <ClInclude Include="VulkanEngine.h" />
-    <ClInclude Include="utils\WinFileUtils.h" />
+    <ClInclude Include="engine\audio\AudioData.h" />
+    <ClInclude Include="engine\audio\AudioDecoder.h" />
+    <ClInclude Include="engine\audio\AudioDecoderFactory.h" />
+    <ClInclude Include="engine\audio\AudioEngine.h" />
+    <ClInclude Include="engine\audio\AudioPlayer.h" />
+    <ClInclude Include="engine\audio\IAudioEngine.h" />
+    <ClInclude Include="engine\audio\Mp3Decoder.h" />
+    <ClInclude Include="engine\audio\OggDecoder.h" />
+    <ClInclude Include="engine\audio\WinAudioEngine.h" />
+    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\input\Input.h" />
+    <ClInclude Include="engine\render\3d\tiny_obj_loader.h" />
+    <ClInclude Include="engine\render\Allocator.h" />
+    <ClInclude Include="engine\render\camera\Camera3D.h" />
+    <ClInclude Include="engine\render\CommandBuffer.h" />
+    <ClInclude Include="engine\render\DescriptorSetManager.h" />
+    <ClInclude Include="engine\render\Device.h" />
+    <ClInclude Include="engine\render\Material.h" />
+    <ClInclude Include="engine\render\Texture.h" />
+    <ClInclude Include="engine\render\IndexBuffer.h" />
+    <ClInclude Include="engine\render\Pipeline.h" />
+    <ClInclude Include="engine\render\Sampler.h" />
+    <ClInclude Include="engine\render\Shader.h" />
+    <ClInclude Include="engine\render\StagingBuffer.h" />
+    <ClInclude Include="engine\render\stb_image.h" />
+    <ClInclude Include="engine\render\SwapChain.h" />
+    <ClInclude Include="engine\render\UniformBuffer.h" />
+    <ClInclude Include="engine\render\VertexBuffer.h" />
+    <ClInclude Include="engine\render\vk_mem_alloc.h" />
+    <ClInclude Include="engine\utils\Utils.h" />
+    <ClInclude Include="engine\logger\Logger.h" />
+    <ClInclude Include="engine\utils\FileUtils.h" />
+    <ClInclude Include="engine\utils\WinFileUtils.h" />
+    <ClInclude Include="engine\window\glWindow.h" />
+    <ClInclude Include="engine\render\3d\transform.h" />
+    <ClInclude Include="engine\render\3d\mesh.h" />
+    <ClInclude Include="engine\render\VObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

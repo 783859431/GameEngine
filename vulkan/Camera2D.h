@@ -6,7 +6,7 @@ class Camera2D
 	
 
 	glm::mat4 view;
-	glm::mat4 projection;
+	glm::mat4 ortho;
 
 	bool dirty;
 public:	
@@ -23,7 +23,7 @@ public:
 
 		position = glm::vec2(0);
 		zoom = 1;
-		projection = glm::ortho(
+		ortho = glm::ortho(
 			left, right,
 			bottom, top,
 			near, far);
@@ -37,11 +37,11 @@ public:
 	}
 	glm::mat4& GetProject() 
 	{
-		projection = glm::ortho(
+		ortho = glm::ortho(
 			left, right,
 			bottom, top,
 			near, far);
-		return projection;
+		return ortho;
 	}
 	glm::mat4& GetView()
 	{
@@ -57,6 +57,6 @@ public:
 	}
 	glm::mat4 getVP() 
 	{
-		return projection * view;
+		return ortho * view;
 	}
 };

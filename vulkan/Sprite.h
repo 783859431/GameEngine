@@ -10,10 +10,10 @@
 #include "Camera2D.h"
 struct Transform2D 
 {
-    glm::vec2 position; //ÆÁÄ»×ø±ê
+    glm::vec2 position; //å±å¹•åæ ‡
     glm::vec2 scale;
-    float rotation;//½Ç¶È
-    glm::vec2 pivot;//ÖáĞÄÎ»ÖÃ
+    float rotation;//è§’åº¦
+    glm::vec2 pivot;//è½´å¿ƒä½ç½®
     void SetPivot(glm::vec2 p) 
     {
         pivot = p;
@@ -54,6 +54,7 @@ public:
     Image img;
     int index;
     void Clean();
+    //ç»‘å®šäº†é‡‡æ ·å™¨
     VkDescriptorImageInfo getDescriptorInfo() 
     {
         VkDescriptorImageInfo info;
@@ -119,7 +120,8 @@ struct SpriteVertex
 class SpriteRender
 {
     
-    Pipeline pipeline;//»æÖÆÍ¼Æ¬µÄpipeline
+
+    
     VertexBuffer vb[MAX_FRAMES_IN_FLIGHT];///
     UniformBuffer ub[MAX_FRAMES_IN_FLIGHT];
     VkDescriptorSetLayout setLayout;
@@ -128,9 +130,9 @@ class SpriteRender
 
  public:
     void init(VkRenderPass renderPass);
-    void Draw(CommandBuffer cmd, Sprite& sp, int currentFrame);
+    void Draw(CommandBuffer& cmd, Sprite& sp, int currentFrame);
     void AddSprite(Sprite* spt);
-    void DrawSprites(CommandBuffer cmd, int currentFrame);
+    void DrawSprites(CommandBuffer& cmd, int currentFrame);
     void Clean();
 };
 

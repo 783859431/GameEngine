@@ -1,21 +1,22 @@
-#include "VulkanEngine.h"
-#include "audio/AudioEngine.h"
+#include "engine/Engine.h"
 #include <iostream>
 int main() {
-    //VulkanEngine engine;
+ 
 
     try {
-       // engine.Run();
-       // AudioEngine::play2d("spring.mp3");
-        int id =  AudioEngine::play2d("s2.mp3");
-  
-        getchar();
-        AudioEngine::end();
+       VulkanEngine engine;
+       engine.Run();
+
     }
     catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
     }
+
+    DescriptorSetPool::clean();
+    CommandBufferPool::clean();
+    Allocator::clean();
+    Device::getInstance().clean();
+    glWindow::getInstance().clean();
 
     return EXIT_SUCCESS;
 }

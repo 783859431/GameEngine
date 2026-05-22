@@ -60,24 +60,24 @@ void SpriteRender::init(VkRenderPass renderPass) {
     pipeline.Create(config);
 }
 
-void SpriteRender::Draw(CommandBuffer cmd,Sprite& sp, int currentFrame) {
+void SpriteRender::Draw(CommandBuffer& cmd,Sprite& sp, int currentFrame) {
 
 
-    //ËÄ¸ö¶¥µã
+    //å››ä¸ªé¡¶ç‚¹
     glm::vec2 p1 = -sp.trans2d.pivot;
     glm::vec2 p2 =  glm::vec2(sp.width-sp.trans2d.pivot.x, sp.height-sp.trans2d.pivot.y);
     glm::vec2 p3 = { p1.x,p2.y };
     glm::vec2 p4 = { p2.x,p1.y };
-    //Á½¸öÈı½ÇĞÎ
+    //ä¸¤ä¸ªä¸‰è§’å½¢
     SpriteVertex v[6] =
     {
-       { p1, {0,0} }, // ×óÉÏ
-       { p4, {1,0} }, // ÓÒÉÏ
-       { p3, {0,1} }, // ×óÏÂ
+       { p1, {0,0} }, // å·¦ä¸Š
+       { p4, {1,0} }, // å³ä¸Š
+       { p3, {0,1} }, // å·¦ä¸‹
 
-       { p4, {1,0} }, // ÓÒÉÏ
-       { p2, {1,1} }, // ÓÒÏÂ
-       { p3, {0,1} }  // ×óÏÂ
+       { p4, {1,0} }, // å³ä¸Š
+       { p2, {1,1} }, // å³ä¸‹
+       { p3, {0,1} }  // å·¦ä¸‹
     };
 
     PushData data = {glWindow::Instance().GetFrameSize(),sp.index};
@@ -86,9 +86,9 @@ void SpriteRender::Draw(CommandBuffer cmd,Sprite& sp, int currentFrame) {
     mats.view = g_Cam2d.GetView();
     mats.proj = g_Cam2d.GetProject();
 
-    ub[currentFrame].UpdateData(&mats);//¸üĞÂ¾ØÕó
+    ub[currentFrame].UpdateData(&mats);//æ›´æ–°çŸ©é˜µ
     cmd.PushConst(pipeline.GetLayout(), VK_SHADER_STAGE_VERTEX_BIT, &data, sizeof(PushData));
-    vb[currentFrame].UpdateVextex(&v[0]);//¸üĞÂ¶¥µã
+    vb[currentFrame].UpdateVextex(&v[0]);//æ›´æ–°é¡¶ç‚¹
     
     cmd.BindPipeLine(pipeline.get());
     cmd.BindVertex(&vb[currentFrame].GetBuffer());
@@ -106,12 +106,12 @@ void SpriteRender::AddSprite(Sprite* spt)
     {
         helper
         .AddWriteImage(1, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, set[i], &img_info, 1, spt->index)
-        .Update();//¸üĞÂÍ¼Æ¬Êı¾İ
+        .Update();//æ›´æ–°å›¾ç‰‡æ•°æ®
     }
     spts.push_back(spt);
 }
 
-void SpriteRender::DrawSprites(CommandBuffer cmd,int currentFrame)
+void SpriteRender::DrawSprites(CommandBuffer& cmd,int currentFrame)
 {
     for (int i = 0; i < spts.size(); i++)
         Draw(cmd,*spts[i],currentFrame);

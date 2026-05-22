@@ -1,337 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="头文件\image">
-      <UniqueIdentifier>{7e1a23bf-08ae-42ae-a158-ba4638b75cb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\input">
-      <UniqueIdentifier>{cbe3b9ae-6503-4e0c-990d-1ce293199efe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\input">
-      <UniqueIdentifier>{8070f5ae-c519-4fb7-88c7-aadef4aa311f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\memory">
-      <UniqueIdentifier>{9e9772fb-fa7b-4df2-9116-cc2c462c449a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\memory">
-      <UniqueIdentifier>{82b6b6c7-4e84-4c3e-a95d-43bde155bf9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\utils">
-      <UniqueIdentifier>{73764e05-d255-40ac-b5f8-7cf3da6d44c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\utils">
-      <UniqueIdentifier>{93e3716d-8a53-4f1f-973b-2c4c35273a2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\template">
-      <UniqueIdentifier>{dc2040ec-e0e0-4ef7-b35f-447c97e11b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\engine">
-      <UniqueIdentifier>{8f65e240-7268-467b-ab2f-cc844996235a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\engine">
-      <UniqueIdentifier>{57bb68ec-be60-4e81-bc67-a7cd053503a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\wrapper">
-      <UniqueIdentifier>{5c57baea-9df9-43ca-ac43-bb947e91e813}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\wrapper">
-      <UniqueIdentifier>{5093c923-bea4-4f84-8f3b-6f9b18253446}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\imgui">
-      <UniqueIdentifier>{bf6bbd29-64fd-4a0e-99a8-921f362d7ae1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\imgui">
-      <UniqueIdentifier>{b093dcf4-a878-4181-9a1a-9377b65ef69f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\engine\input">
-      <UniqueIdentifier>{d1068381-6e31-4fb4-86b9-00749fddc4a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\engine\render">
-      <UniqueIdentifier>{ee7fd311-63c0-42c3-9cf3-876de0a1c212}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\engine\audio">
-      <UniqueIdentifier>{98fc8dba-feee-405c-8837-e9f03cdfe14d}</UniqueIdentifier>
-    </Filter>
+    <None Include="engine\render\shader\fragment.frag" />
+    <None Include="engine\render\shader\vertex.vert" />
+    <None Include="engine\render\shader\compile_shader.bat" />
+    <None Include="engine\render\shader\basic.frag" />
+    <None Include="engine\render\shader\basic.vert" />
+    <None Include="engine\render\shader\sample.frag" />
+    <None Include="engine\render\shader\sample.vert" />
+    <None Include="engine\render\shader\basicPBR.frag" />
+    <None Include="engine\render\shader\basicPBR.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="VObject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\gui.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Drawable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="IndexBuffer.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="StagingBuffer.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="UniformBuffer.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandBuffer.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Pipeline.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>源文件\input</Filter>
-    </ClCompile>
-    <ClCompile Include="DescriptorSetManager.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Allocator.cpp">
-      <Filter>源文件\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>源文件\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="VulkanEngine.cpp">
-      <Filter>源文件\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera2D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="glWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SwapChain.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="Device.cpp">
-      <Filter>源文件\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="utils\FileUtils.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="utils\WinFileUtils.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui_draw.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui_tables.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="threeparty\imgui\imgui_widgets.cpp">
-      <Filter>源文件\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioDecoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\Mp3Decoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\OggDecoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioDecoderFactory.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioPlayer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioData.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="logger\Logger.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioEngine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\WinAudioEngine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\IAudioEngine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <ClCompile Include="engine\logger\Logger.cpp" />
+    <ClCompile Include="engine\audio\AudioData.cpp" />
+    <ClCompile Include="engine\audio\AudioDecoder.cpp" />
+    <ClCompile Include="engine\audio\AudioDecoderFactory.cpp" />
+    <ClCompile Include="engine\audio\AudioEngine.cpp" />
+    <ClCompile Include="engine\audio\AudioPlayer.cpp" />
+    <ClCompile Include="engine\audio\IAudioEngine.cpp" />
+    <ClCompile Include="engine\audio\Mp3Decoder.cpp" />
+    <ClCompile Include="engine\audio\OggDecoder.cpp" />
+    <ClCompile Include="engine\audio\WinAudioEngine.cpp" />
+    <ClCompile Include="engine\utils\FileUtils.cpp" />
+    <ClCompile Include="engine\utils\WinFileUtils.cpp" />
+    <ClCompile Include="engine\render\StagingBuffer.cpp" />
+    <ClCompile Include="engine\render\UniformBuffer.cpp" />
+    <ClCompile Include="engine\render\VertexBuffer.cpp" />
+    <ClCompile Include="engine\render\Allocator.cpp" />
+    <ClCompile Include="engine\utils\Utils.cpp" />
+    <ClCompile Include="engine\render\Device.cpp" />
+    <ClCompile Include="engine\render\CommandBuffer.cpp" />
+    <ClCompile Include="engine\render\Pipeline.cpp" />
+    <ClCompile Include="engine\render\SwapChain.cpp" />
+    <ClCompile Include="engine\render\Shader.cpp" />
+    <ClCompile Include="engine\window\glWindow.cpp" />
+    <ClCompile Include="engine\render\Texture.cpp" />
+    <ClCompile Include="engine\render\IndexBuffer.cpp" />
+    <ClCompile Include="engine\render\Sampler.cpp" />
+    <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\input\Input.cpp" />
+    <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="engine\render\camera\Camera3D.cpp" />
+    <ClCompile Include="engine\render\3d\transform.cpp" />
+    <ClCompile Include="engine\render\3d\mesh.cpp" />
+    <ClCompile Include="engine\render\Material.cpp" />
+    <ClCompile Include="engine\render\VObject.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment.frag" />
-    <None Include="vertex.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="VObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\gui.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Drawable.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>头文件\image</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>头文件\input</Filter>
-    </ClInclude>
-    <ClInclude Include="Pipeline.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexBuffer.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="StagingBuffer.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="UniformBuffer.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandBuffer.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="DescriptorSetManager.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="Allocator.h">
-      <Filter>头文件\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>头文件\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>头文件\template</Filter>
-    </ClInclude>
-    <ClInclude Include="VulkanEngine.h">
-      <Filter>头文件\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="vk_mem_alloc.h">
-      <Filter>头文件\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera2D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="glWindow.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SwapChain.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="Device.h">
-      <Filter>头文件\wrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\FileUtils.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\WinFileUtils.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imconfig.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imgui.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imgui_impl_glfw.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imgui_impl_vulkan.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imgui_internal.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imstb_rectpack.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imstb_textedit.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="threeparty\imgui\imstb_truetype.h">
-      <Filter>头文件\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioDecoder.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\Mp3Decoder.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\OggDecoder.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioDecoderFactory.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioPlayer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioData.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="logger\Logger.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\WinAudioEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\IAudioEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClInclude Include="engine\logger\Logger.h" />
+    <ClInclude Include="engine\audio\AudioData.h" />
+    <ClInclude Include="engine\audio\AudioDecoder.h" />
+    <ClInclude Include="engine\audio\AudioDecoderFactory.h" />
+    <ClInclude Include="engine\audio\AudioEngine.h" />
+    <ClInclude Include="engine\audio\AudioPlayer.h" />
+    <ClInclude Include="engine\audio\IAudioEngine.h" />
+    <ClInclude Include="engine\audio\Mp3Decoder.h" />
+    <ClInclude Include="engine\audio\OggDecoder.h" />
+    <ClInclude Include="engine\audio\WinAudioEngine.h" />
+    <ClInclude Include="engine\utils\FileUtils.h" />
+    <ClInclude Include="engine\utils\WinFileUtils.h" />
+    <ClInclude Include="engine\render\StagingBuffer.h" />
+    <ClInclude Include="engine\render\UniformBuffer.h" />
+    <ClInclude Include="engine\render\VertexBuffer.h" />
+    <ClInclude Include="engine\render\vk_mem_alloc.h" />
+    <ClInclude Include="engine\render\Allocator.h" />
+    <ClInclude Include="engine\utils\Utils.h" />
+    <ClInclude Include="engine\render\Device.h" />
+    <ClInclude Include="engine\render\CommandBuffer.h" />
+    <ClInclude Include="engine\render\Pipeline.h" />
+    <ClInclude Include="engine\render\SwapChain.h" />
+    <ClInclude Include="engine\render\Shader.h" />
+    <ClInclude Include="engine\window\glWindow.h" />
+    <ClInclude Include="engine\render\Texture.h" />
+    <ClInclude Include="engine\render\stb_image.h" />
+    <ClInclude Include="engine\render\IndexBuffer.h" />
+    <ClInclude Include="engine\render\Sampler.h" />
+    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\input\Input.h" />
+    <ClInclude Include="engine\render\DescriptorSetManager.h" />
+    <ClInclude Include="engine\render\camera\Camera3D.h" />
+    <ClInclude Include="engine\render\3d\transform.h" />
+    <ClInclude Include="engine\render\3d\mesh.h" />
+    <ClInclude Include="engine\render\Material.h" />
+    <ClInclude Include="engine\render\VObject.h" />
+    <ClInclude Include="engine\render\3d\tiny_obj_loader.h" />
   </ItemGroup>
 </Project>
