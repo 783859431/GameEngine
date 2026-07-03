@@ -10,6 +10,14 @@
     <None Include="engine\render\shader\sample.vert" />
     <None Include="engine\render\shader\basicPBR.frag" />
     <None Include="engine\render\shader\basicPBR.vert" />
+    <None Include="engine\render\shader\line.vert" />
+    <None Include="engine\render\shader\line.frag" />
+    <None Include="engine\render\shader\line.bat" />
+    <None Include="engine\render\shader\circle.vert" />
+    <None Include="engine\render\shader\circle.frag" />
+    <None Include="engine\render\shader\circle.bat" />
+    <None Include="engine\render\shader\circle_border.vert" />
+    <None Include="engine\render\shader\circle_border.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\logger\Logger.cpp" />
@@ -42,8 +50,8 @@
     <ClCompile Include="engine\input\Input.cpp" />
     <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="engine\render\camera\Camera3D.cpp" />
-    <ClCompile Include="engine\render\3d\transform.cpp" />
+    <ClCompile Include="engine\render\camera\Camera.cpp" />
+    <ClCompile Include="engine\render\3d\transform3D.cpp" />
     <ClCompile Include="engine\render\3d\mesh.cpp" />
     <ClCompile Include="engine\render\Material.cpp" />
     <ClCompile Include="engine\render\VObject.cpp" />
@@ -53,6 +61,10 @@
     <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="engine\render\PolygonRender.cpp" />
+    <ClCompile Include="engine\render\SpriteRender.cpp" />
+    <ClCompile Include="engine\Global.cpp" />
+    <ClCompile Include="engine\render\StorageBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\logger\Logger.h" />
@@ -86,11 +98,17 @@
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\input\Input.h" />
     <ClInclude Include="engine\render\DescriptorSetManager.h" />
-    <ClInclude Include="engine\render\camera\Camera3D.h" />
-    <ClInclude Include="engine\render\3d\transform.h" />
+    <ClInclude Include="engine\render\camera\Camera.h" />
     <ClInclude Include="engine\render\3d\mesh.h" />
     <ClInclude Include="engine\render\Material.h" />
     <ClInclude Include="engine\render\VObject.h" />
     <ClInclude Include="engine\render\3d\tiny_obj_loader.h" />
+    <ClInclude Include="engine\render\PolygonRender.h" />
+    <ClInclude Include="engine\render\SpriteRender.h" />
+    <ClInclude Include="engine\render\Sprite.h" />
+    <ClInclude Include="engine\render\Animation.h" />
+    <ClInclude Include="engine\Global.h" />
+    <ClInclude Include="engine\render\3d\transform3D.h" />
+    <ClInclude Include="engine\render\StorageBuffer.h" />
   </ItemGroup>
 </Project>

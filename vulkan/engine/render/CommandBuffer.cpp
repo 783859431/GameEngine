@@ -72,15 +72,16 @@ void CommandBuffer::bindIndex(VkBuffer indexBuffer, int _offset) {
 	VkDeviceSize offset = _offset;
 	vkCmdBindIndexBuffer(m_command, indexBuffer, offset, VK_INDEX_TYPE_UINT32);
 }
-void CommandBuffer::bindSets(VkPipelineLayout lay, VkDescriptorSet* sets, int count ,int first) {
-	vkCmdBindDescriptorSets(m_command, VK_PIPELINE_BIND_POINT_GRAPHICS, lay, first, count, sets, 0, nullptr);
+void CommandBuffer::bindSets(VkPipelineLayout lay, VkDescriptorSet* sets, uint32_t count , uint32_t first,uint32_t dynamicCount,uint32_t* dynamicOffset ) {
+	vkCmdBindDescriptorSets(m_command, VK_PIPELINE_BIND_POINT_GRAPHICS, lay, first, count, sets, dynamicCount, dynamicOffset);
 }
+
 void CommandBuffer::pushConst(VkPipelineLayout lay, VkShaderStageFlags stage, void* data, uint32_t size, uint32_t offset) {
 	vkCmdPushConstants(m_command, lay, stage, offset, size, data);
 }
-void CommandBuffer::drawIndexed(int indexCount) {
+void CommandBuffer::drawIndexed(uint32_t indexCount, uint32_t instanceCount, uint32_t firstIndex,int offset,  uint32_t firstInstance) {
 
-	vkCmdDrawIndexed(m_command, indexCount, 1, 0, 0, 0); //
+	vkCmdDrawIndexed(m_command, indexCount, instanceCount, firstIndex, offset, firstInstance); //
 }
 void CommandBuffer::draw(int vertexCount , int instCount ,int firstVertex ,int firstIns)
 {

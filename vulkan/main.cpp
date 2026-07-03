@@ -12,11 +12,12 @@ int main() {
         std::cerr << e.what() << std::endl;
     }
 
-    DescriptorSetPool::clean();
+    PoolManager::inst().clean();
     CommandBufferPool::clean();
     Allocator::clean();
+    SamplerManager::clean();
     Device::getInstance().clean();
     glWindow::getInstance().clean();
-
+    
     return EXIT_SUCCESS;
 }

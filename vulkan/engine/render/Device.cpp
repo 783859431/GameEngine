@@ -2,24 +2,24 @@
 #include "../window/glWindow.h"
 #include "SwapChain.h"
 const std::vector<const char*> deviceExtensions = {
-VK_KHR_SWAPCHAIN_EXTENSION_NAME
+
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+    VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME
 };
 const std::vector<const char*> validationLayers = {
-"VK_LAYER_KHRONOS_validation"
+
+    "VK_LAYER_KHRONOS_validation"
 };
 bool checkDeviceExtensionSupport(VkPhysicalDevice device) {
     uint32_t extensionCount;
     vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
-
     std::vector<VkExtensionProperties> availableExtensions(extensionCount);
     vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, availableExtensions.data());
-
     std::set<std::string> requiredExtensions(deviceExtensions.begin(), deviceExtensions.end());
-
-    for (const auto& extension : availableExtensions) {
+    for (const auto& extension : availableExtensions) 
+    {
         requiredExtensions.erase(extension.extensionName);
     }
-
     return requiredExtensions.empty();
 }
 bool checkValidationLayerSupport() {
@@ -109,25 +109,36 @@ void Device::createDevice()
     }
 
     VkPhysicalDeviceFeatures deviceFeatures{};
-    deviceFeatures.fillModeNonSolid = true;
+    deviceFeatures.fillModeNonSolid = VK_TRUE;
+    deviceFeatures.wideLines = VK_TRUE;
+    
+    //VkPhysicalDeviceDescriptorIndexingFeatures features{};
+    //features.descriptorBindingPartiallyBound = VK_TRUE;   // 允许只绑定部分槽位
+    //features.runtimeDescriptorArray = VK_TRUE;            // 允许运行时数组大小
+    //features.shaderSampledImageArrayNonUniformIndexing = VK_TRUE;
+
+
+    VkPhysicalDeviceVulkan12Features features12{};
+    features12.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES;
+    features12.descriptorIndexing = VK_TRUE;              // 启用扩展
+    features12.runtimeDescriptorArray = VK_TRUE;          // 支持运行时大小的数组
+    features12.shaderSampledImageArrayNonUniformIndexing = VK_TRUE; // 支持非均匀索引
+    features12.descriptorBindingPartiallyBound = VK_TRUE; // 启用部分绑定
+   
     VkDeviceCreateInfo createInfo{};
     createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-
     createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
     createInfo.pQueueCreateInfos = queueCreateInfos.data();
-
     createInfo.pEnabledFeatures = &deviceFeatures;
-
     createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
     createInfo.ppEnabledExtensionNames = deviceExtensions.data();
-
+    createInfo.pNext = &features12;
     if (enableValidationLayers) {
         createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
         createInfo.ppEnabledLayerNames = validationLayers.data();
     }
     else 
     {
-        //
         createInfo.enabledLayerCount = 0;
     }
 
@@ -203,6 +214,8 @@ void Device::chooseGpu()
         {
             if (isDeviceSuitable(device, surface))
             {
+                vkGetPhysicalDeviceProperties(device, &props);
+                uniformAlign = props.limits.minUniformBufferOffsetAlignment;
                 gpu = device;
                 break;
             }

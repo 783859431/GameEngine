@@ -12,10 +12,10 @@ void VertexBuffer::allocBuffer(uint32_t count, uint32_t vertSize)
 	vertCount = count;
 }
 
-void VertexBuffer::updateVextex(void* vertexsBuf,int size)
+void VertexBuffer::updateVextex(void* vertexsBuf,int size ,int offset)
 {
-	int s = std::min(size, (int)m_allocBuf.size);
-	memcpy(m_allocBuf.mapped, vertexsBuf, s);
+	int s = std::min(size+offset, (int)m_allocBuf.size);
+	memcpy((char*)m_allocBuf.mapped+offset, vertexsBuf, s);
 }
 
 void VertexBuffer::clean() {

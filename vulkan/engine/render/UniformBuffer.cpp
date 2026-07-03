@@ -6,10 +6,10 @@ void UniformBuffer::allocBuffer(uint32_t size)
 	Allocator::allocUniformBuffer(m_allocBuf); 
 }
 
-void UniformBuffer::updateData(void* uniformData,int size)
+void UniformBuffer::updateData(void* uniformData,int size,int offset)
 {
-	int s = std::min(size, (int)m_allocBuf.size);
-	memcpy(m_allocBuf.mapped, uniformData, s);
+	int s = std::min(size + offset, (int)m_allocBuf.size);
+	memcpy((char*)m_allocBuf.mapped + offset, uniformData, s);
 }
 
 VkDescriptorBufferInfo UniformBuffer::getDescriptorInfo()

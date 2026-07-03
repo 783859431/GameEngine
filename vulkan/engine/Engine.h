@@ -29,29 +29,39 @@
 #include "render/SwapChain.h"
 #include "render/DescriptorSetManager.h"
 #include "render/Sampler.h"
-#include "render/camera/Camera3D.h"
+#include "render/camera/Camera.h"
 #include "window/glWindow.h"
 #include "render/VObject.h"
-#include "box2d/box2d.h"
+//#include "box2d/box2d.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_vulkan.h"
+#include "render/PolygonRender.h"
+#include "render/SpriteRender.h"
+#include "render/Animation.h"
+//sheet 分割
+//像素
+//矩形框
+//uv框
 class VulkanEngine
 {
     float width = 800, height = 600;
     float lastTime, deltaTime;
+    AnimationSprite sp_hero1;
+    AnimationSprite sp_hero2;
+    SpriteRender spRender; 
     VkDevice  device;
     SwapChain swapchain;
     Pipeline pipeline;
     Pipeline matPipeline;
-    //Pipeline PbrPipeline;
-    b2BodyId m_bodyIds[2]; 
-    b2WorldId m_worldId;
+    PolygonRender poly;
+    //b2BodyId m_bodyIds[2]; 
+    //b2WorldId m_worldId;
     Camera camera;
     UniformBuffer ubs[MAX_FRAMES_IN_FLIGHT];
     CommandBuffer cbs[MAX_FRAMES_IN_FLIGHT];
     VkDescriptorSet sets[MAX_FRAMES_IN_FLIGHT];
-    VkDescriptorSetLayout setLayout;
+    DSetLayout setLayout;
     //VkDescriptorSetLayout PbrLayout;
 
     //Mesh circle;
@@ -59,6 +69,8 @@ class VulkanEngine
     VObject sph;
     Texture tex;
     Texture bochi;
+    Texture hero;
+    Texture hero2;
     Material sapMat;
     float dt = 0;
 public :

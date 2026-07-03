@@ -3,7 +3,6 @@
 
 void Allocator::init() {
     VmaAllocatorCreateInfo allocatorInfo = {};
-    
     allocatorInfo.physicalDevice = Device::getInstance().gpu;
     allocatorInfo.device = Device::getInstance().device;
     allocatorInfo.instance = Device::getInstance().ins;
@@ -133,4 +132,16 @@ void Allocator::allocUniformBuffer(AllocatedBuffer& alloc) {
 
 
 }
+
+void Allocator::allocStorageBuffer(AllocatedBuffer& alloc)
+{
+    allocBuffer(
+        alloc.size,
+        VK_BUFFER_USAGE_STORAGE_BUFFER_BIT,
+        alloc,
+        VMA_ALLOCATION_CREATE_HOST_ACCESS_SEQUENTIAL_WRITE_BIT | VMA_ALLOCATION_CREATE_MAPPED_BIT,
+        VMA_MEMORY_USAGE_CPU_TO_GPU);
+
+}
+
 VmaAllocator Allocator::allocator = nullptr;

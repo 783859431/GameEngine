@@ -139,11 +139,19 @@
     <None Include="engine\render\shader\basic.vert" />
     <None Include="engine\render\shader\basicPBR.frag" />
     <None Include="engine\render\shader\basicPBR.vert" />
+    <None Include="engine\render\shader\circle.bat" />
+    <None Include="engine\render\shader\circle.frag" />
+    <None Include="engine\render\shader\circle.vert" />
+    <None Include="engine\render\shader\circle_border.frag" />
+    <None Include="engine\render\shader\circle_border.vert" />
     <None Include="engine\render\shader\compile_shader.bat" />
     <None Include="engine\render\shader\fragment.frag">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
     </None>
+    <None Include="engine\render\shader\line.bat" />
+    <None Include="engine\render\shader\line.frag" />
+    <None Include="engine\render\shader\line.vert" />
     <None Include="engine\render\shader\sample.frag" />
     <None Include="engine\render\shader\sample.vert" />
     <None Include="engine\render\shader\vertex.vert">
@@ -162,9 +170,10 @@
     <ClCompile Include="engine\audio\OggDecoder.cpp" />
     <ClCompile Include="engine\audio\WinAudioEngine.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\Global.cpp" />
     <ClCompile Include="engine\input\Input.cpp" />
     <ClCompile Include="engine\render\Allocator.cpp" />
-    <ClCompile Include="engine\render\camera\Camera3D.cpp" />
+    <ClCompile Include="engine\render\camera\Camera.cpp" />
     <ClCompile Include="engine\render\CommandBuffer.cpp" />
     <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
     <ClCompile Include="engine\render\Device.cpp" />
@@ -184,9 +193,12 @@
     <ClCompile Include="engine\utils\WinFileUtils.cpp" />
     <ClCompile Include="engine\window\glWindow.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="engine\render\3d\transform.cpp" />
+    <ClCompile Include="engine\render\3d\transform3D.cpp" />
     <ClCompile Include="engine\render\3d\mesh.cpp" />
     <ClCompile Include="engine\render\VObject.cpp" />
+    <ClCompile Include="engine\render\PolygonRender.cpp" />
+    <ClCompile Include="engine\render\SpriteRender.cpp" />
+    <ClCompile Include="engine\render\StorageBuffer.cpp" />
     <ClCompile Include="threeparty\imgui\imgui.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp" />
@@ -195,6 +207,8 @@
     <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="engine\render\3d\transform3D.h" />
+    <ClInclude Include="engine\render\Animation.h" />
     <ClInclude Include="engine\audio\AudioData.h" />
     <ClInclude Include="engine\audio\AudioDecoder.h" />
     <ClInclude Include="engine\audio\AudioDecoderFactory.h" />
@@ -208,11 +222,13 @@
     <ClInclude Include="engine\input\Input.h" />
     <ClInclude Include="engine\render\3d\tiny_obj_loader.h" />
     <ClInclude Include="engine\render\Allocator.h" />
-    <ClInclude Include="engine\render\camera\Camera3D.h" />
+    <ClInclude Include="engine\render\camera\Camera.h" />
     <ClInclude Include="engine\render\CommandBuffer.h" />
     <ClInclude Include="engine\render\DescriptorSetManager.h" />
     <ClInclude Include="engine\render\Device.h" />
+    <ClInclude Include="engine\Global.h" />
     <ClInclude Include="engine\render\Material.h" />
+    <ClInclude Include="engine\render\Sprite.h" />
     <ClInclude Include="engine\render\Texture.h" />
     <ClInclude Include="engine\render\IndexBuffer.h" />
     <ClInclude Include="engine\render\Pipeline.h" />
@@ -229,9 +245,11 @@
     <ClInclude Include="engine\utils\FileUtils.h" />
     <ClInclude Include="engine\utils\WinFileUtils.h" />
     <ClInclude Include="engine\window\glWindow.h" />
-    <ClInclude Include="engine\render\3d\transform.h" />
     <ClInclude Include="engine\render\3d\mesh.h" />
     <ClInclude Include="engine\render\VObject.h" />
+    <ClInclude Include="engine\render\PolygonRender.h" />
+    <ClInclude Include="engine\render\SpriteRender.h" />
+    <ClInclude Include="engine\render\StorageBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,18 +3,19 @@
 #include "vk_mem_alloc.h"
 #include "Allocator.h"
 #include <memory>
-class UniformBuffer
+class StorageBuffer
 {
+
 	AllocatedBuffer m_allocBuf;
 public:
-	
+
 	void allocBuffer(uint32_t size);
-	void updateData(void* uniformData, int size,int offset =0);
+	void updateData(void* uniformData, int size, int offset = 0);
 	VkDescriptorBufferInfo getDescriptorInfo();
 	VkBuffer getBuffer();
 	void clean();
-	~UniformBuffer() {
-		if(m_allocBuf._allocation)
+	~StorageBuffer() {
+		if (m_allocBuf._allocation)
 			clean();
 	}
 };

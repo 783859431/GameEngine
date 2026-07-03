@@ -1,6 +1,5 @@
 #include "Material.h"
-#include "DescriptorSetManager.h"
-#include "Global.h"
+
 
 void Material::init()
 {
@@ -57,10 +56,8 @@ void Material::createDescriptorSets()
         .build();
     for (int i = 0; i < MAX_FRAMES_IN_FLIGHT; i++)
     {
-        DescriptorSetPool::allocSets(
-            m_setLayouts.size(),
-            m_setLayouts.data(),
-            m_sets[i].data());
+
+        PoolManager::inst().allocSets(m_setLayouts,m_sets[i]);
     }
 
 
@@ -70,8 +67,8 @@ void Material::clean()
 {
     for (int i = 0; i < m_setLayouts.size(); i++)
     {
-      if(m_setLayouts[i]!=0)
-          vkDestroyDescriptorSetLayout(Device::getInstance().device, m_setLayouts[i], 0);
+      if(m_setLayouts[i].layout!=0)
+          vkDestroyDescriptorSetLayout(Device::getInstance().device, m_setLayouts[i].layout, 0);
     }
 
 }

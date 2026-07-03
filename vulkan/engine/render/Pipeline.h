@@ -20,7 +20,7 @@ struct PipelineConfig {
     VkPipelineColorBlendStateCreateInfo colorBlending{};
     VkPipelineDepthStencilStateCreateInfo depthStencil{};
     VkPipelineDynamicStateCreateInfo dynamicState{};
-    VkDynamicState dyState[2] = {};
+    std::vector<VkDynamicState> dyState;
     static PipelineConfig basic() {
         PipelineConfig config;
         
@@ -112,14 +112,17 @@ struct PipelineConfig {
 
 
         //动态属性，指定pipeline 某些属性可以被修改。增加pipeline 的灵活性。
-        config.dyState[0] = VK_DYNAMIC_STATE_VIEWPORT;
-        config.dyState[1] = VK_DYNAMIC_STATE_SCISSOR;
 
+        config.dyState.push_back( VK_DYNAMIC_STATE_VIEWPORT);
+        config.dyState.push_back( VK_DYNAMIC_STATE_SCISSOR);
+        config.dyState.push_back( VK_DYNAMIC_STATE_LINE_WIDTH);
+
+        //
         VkPipelineDynamicStateCreateInfo* dynamicState = &config.dynamicState;
         dynamicState->sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-        dynamicState->dynamicStateCount = 2;
+        dynamicState->dynamicStateCount = 3;
         dynamicState->pDynamicStates = &(config.dyState[0]);
-
+      
 
         return config;
 

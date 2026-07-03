@@ -1,7 +1,5 @@
 #pragma once
 #include "vk_mem_alloc.h"
-#include "../utils/Utils.h"
-#include "Device.h"
 struct AllocatedBuffer {
     VkBuffer _buffer = VK_NULL_HANDLE;
     VmaAllocation _allocation =VK_NULL_HANDLE;
@@ -47,6 +45,7 @@ public:
     static void mapBuffer(AllocatedBuffer& buf);
     static void unMapBuffer(AllocatedBuffer& buf);
     static void allocUniformBuffer(AllocatedBuffer& alloc);
+    static void allocStorageBuffer(AllocatedBuffer& alloc);
 
 
 };

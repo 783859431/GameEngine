@@ -1,6 +1,5 @@
 /*
 The MIT License (MIT)
-
 Copyright (c) 2012-Present, Syoyo Fujita and many contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

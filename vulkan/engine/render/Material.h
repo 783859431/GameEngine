@@ -4,7 +4,7 @@
 #include "glm/glm.hpp"
 #include "Pipeline.h"
 #include "UniformBuffer.h"
-
+#include "DescriptorSetManager.h"
 
 
 class Material
@@ -31,7 +31,7 @@ public:
     void createDescriptorSets();
 
     // 描述符相关
-    std::vector<VkDescriptorSetLayout> m_setLayouts;// 
+    std::vector<DSetLayout> m_setLayouts;// 
     // 描述符集
     std::vector<VkDescriptorSet> m_sets[MAX_FRAMES_IN_FLIGHT]; //set0 set1 set2 
     void clean();

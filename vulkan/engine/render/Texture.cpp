@@ -1,8 +1,10 @@
 #include "Texture.h"
 #include "../utils/FileUtils.h"
-static VkSampler defaultSampler = 0;
+#include "Sampler.h"
 
 
+
+//获取不同格式的图片的单个像素占用的内存大小
 int Texture::getPixelSize()
 {
 
@@ -110,11 +112,13 @@ int Texture::getPixelSize()
     return 0;
 }
 
-int Texture::getImageSize()
+// 获取图片的内存大小
+int Texture::getImageMemorySize()
 {
     return this->width*this->height*this->getPixelSize();
 }
 
+// 创建一张空白的Texture
 void Texture::createEmpty( uint32_t width, uint32_t height, VkImageUsageFlags usage, VkFormat format,VkImageTiling tiling)
 {
     this->width = width;
@@ -129,25 +133,13 @@ void Texture::createEmpty( uint32_t width, uint32_t height, VkImageUsageFlags us
     alloc.mipLevel = this->mipLevels;
     alloc.tiling = tiling;
     alloc.usage = usage;
-    alloc.size = getImageSize();
+    alloc.size = getImageMemorySize();
     Allocator::allocImage(alloc);
     this->allocation = alloc.allocation;
     this->img = alloc.img;
     
 }
 
-VkSampler Texture::getDefaultSampler()
-{
-    if (!defaultSampler)
-        defaultSampler = createSampler();
-    return defaultSampler;
-}
-
-void Texture::destroyDefaultSampler()
-{
-    if (defaultSampler)
-        vkDestroySampler(Device::getInstance().device,defaultSampler,nullptr);
-}
 
 
 void Texture::loadRes(const std::string& path)
@@ -159,10 +151,12 @@ void Texture::loadRes(const std::string& path)
         throw std::runtime_error("failed to load texture image!");
     }
     createEmpty(width,height, VK_IMAGE_USAGE_SAMPLED_BIT|VK_IMAGE_USAGE_TRANSFER_DST_BIT);
-    copyToGpu((char*)pixels, getImageSize());
+    copyToGpu((char*)pixels, getImageMemorySize());
     stbi_image_free(pixels);
     createImageView();
-    sampler = getDefaultSampler();
+    sampler = SamplerManager::getSamper(SamplerType::NearestRepeat);
+    name = path;
+
 }
 
 

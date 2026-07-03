@@ -1,5 +1,4 @@
-#include "Camera3D.h"
-
+#include "Camera.h"
 CamData camData;
 Camera::Camera()
     : m_position(0.0f, 0.0f, -5.0f)

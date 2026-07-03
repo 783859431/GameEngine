@@ -10,7 +10,6 @@ public:
 	~Device() = default;
 	Device(const Device&) = delete;
 	Device& operator=(const Device&) = delete;
-
 	static Device& getInstance() {
 		static Device instance;
 		return instance;
@@ -18,13 +17,14 @@ public:
 
 public:
 	VkDevice device = 0;
-	VkInstance ins =0;
-	VkPhysicalDevice gpu =0;
-	QueueFamilyIndices indices;
-	VkQueue graphicsQueue =0;
-	VkQueue presentQueue =0;
-	VkDebugUtilsMessengerEXT debugMessenger =0;
-	VkSurfaceKHR surface =0;
+	VkInstance ins = 0;
+	VkPhysicalDevice gpu = 0;
+	uint32_t uniformAlign = 0;
+	QueueFamilyIndices indices = {0};
+	VkQueue graphicsQueue = 0;
+	VkQueue presentQueue = 0;
+	VkDebugUtilsMessengerEXT debugMessenger = 0;
+	VkSurfaceKHR surface = 0;
 
 	void init();
 	void createDevice();

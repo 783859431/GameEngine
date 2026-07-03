@@ -1,16 +1,21 @@
 #pragma once
 #include <vulkan/vulkan.hpp>
-class Sampler
+
+enum  SamplerType
 {
-	VkSampler sampler =0;
-public :
-	void createDefault();
-	void create();
-	void clean();
-	~Sampler() {
-		if (sampler)
-			clean();
-	}
+	LinearRepeat,
+	LinearClamp,
+	NearestRepeat,
+	// ShadowCompare,
+	// PointClamp
 
 };
 
+
+class SamplerManager
+{
+public :
+	static void createDefaultSamplers();
+	static void clean();
+	static VkSampler getSamper(SamplerType tp);
+};

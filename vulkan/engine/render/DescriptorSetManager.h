@@ -5,8 +5,9 @@
 #include <stdexcept>
 #include <memory>
 #include "Device.h"
-#define MAX_IMAGE_SAMPlER  (1<<3)
-#define MAX_UNIFORM_BUFFER (1<<3)
+#include <unordered_map>
+#define MAX_IMAGE_SAMPlER  (1<<8)
+#define MAX_UNIFORM_BUFFER (1<<8)
 
 class WriteSetHelper {
 
@@ -58,34 +59,71 @@ public:
 };
 
 
+//TODO:统计每种资源的数量
 
+struct DSetLayout {
 
-
-class DescriptorSetPool
-{
-
-	
-public:
-
-	static VkDescriptorPool setsPool ;
-	static std::vector<VkDescriptorPoolSize> poolSizes;
-	
-	static void init(int maxSets = 20, VkDescriptorPoolCreateFlags flags = VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT);
-
-	//set0 set1 set2 
-	static void allocSets(uint32_t setsCount, VkDescriptorSetLayout* setLayouts, VkDescriptorSet* descSets);
-
-	static void clean();
-
+	VkDescriptorSetLayout layout;
+	std::unordered_map<VkDescriptorType, uint32_t> layoutInfo;
 };
 
 
+
+class DPool {
+
+	struct Usage
+	{
+		uint32_t total = 0;
+		uint32_t usage = 0;
+		uint32_t remain = 0;
+	};
+public:
+	DPool() {
+
+	}
+
+	VkDescriptorPool setsPool = 0;
+
+	std::unordered_map<VkDescriptorType, Usage> poolInfo;
+	//当前pool的最大的set
+	Usage setUsage = {0}; 
+	
+	void allocSets(std::vector<DSetLayout>& layouts, std::vector<VkDescriptorSet>& sets);
+	void _allocSets(DSetLayout* setLayouts,uint32_t count, VkDescriptorSet* sets);
+	void clean();
+};
+
+class PoolManager
+{
+private:
+	PoolManager() = default;
+public :
+	/*
+	static Device& getInstance() {
+		static Device instance;
+		return instance;
+	}
+	*/
+
+	static PoolManager& inst() {
+	    static PoolManager _inst;
+		return _inst;
+	}
+	void init();
+	std::vector< std::unique_ptr<DPool>> pools;
+	void allocSets(std::vector<DSetLayout>& layouts, std::vector<VkDescriptorSet>& outSets);
+	void allocSets(DSetLayout* layouts, int count, VkDescriptorSet* outsets);
+	void allocSet(DSetLayout& layout, VkDescriptorSet* outset);
+	int createPool(std::vector<VkDescriptorPoolSize>& poolSize, uint32_t maxSets);
+	int findOrCreatePool(std::vector<DSetLayout>& layouts);
+	void clean();
+};
 
 
 class DescriptorSetLayoutBuilder
 {
 	std::vector<VkDescriptorSetLayoutBinding> bindings;
-
+	std::vector<VkDescriptorBindingFlags> flags;
 public:
 
 	DescriptorSetLayoutBuilder& AddBinding(
@@ -98,17 +136,36 @@ public:
 		layoutBinding.descriptorType = descriptorType;
 		layoutBinding.descriptorCount = count;
 		layoutBinding.stageFlags = stageFlags;
+		
 		bindings.push_back(layoutBinding);
 		return *this;
 	}
-	VkDescriptorSetLayout build() 
+	DescriptorSetLayoutBuilder& AddFlag(VkDescriptorBindingFlags flag) {
+		flags.push_back(flag);
+		return *this;
+	}
+	DSetLayout build() 
 	{
 		VkDescriptorSetLayout descriptorSetLayout;
 		VkDescriptorSetLayoutCreateInfo descriptorSetLayoutInfo{};
 		descriptorSetLayoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
 		descriptorSetLayoutInfo.bindingCount = static_cast<uint32_t>(bindings.size());
 		descriptorSetLayoutInfo.pBindings = bindings.data();
-
+		VkDescriptorBindingFlags bindingFlag = 0;
+		VkDescriptorSetLayoutBindingFlagsCreateInfo bindingFlags{};
+		bindingFlags.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
+		if (flags.size() > 0)
+		{
+			 // VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT | VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT;
+			for (auto f : flags)
+			{
+				bindingFlag |= f;
+			}
+			bindingFlags.bindingCount = 1;
+			bindingFlags.pBindingFlags = &bindingFlag;
+			descriptorSetLayoutInfo.pNext = &bindingFlags;
+		}
+	
 		if (vkCreateDescriptorSetLayout(
 			Device::getInstance().device,
 			&descriptorSetLayoutInfo,
@@ -116,7 +173,15 @@ public:
 			&descriptorSetLayout) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create descriptor set layout!");
 		}
-		return descriptorSetLayout;
+		DSetLayout layout;
+		for (int i = 0; i < bindings.size(); i++)
+		{
+			layout.layoutInfo[bindings[i].descriptorType] = bindings[i].descriptorCount;
+		}
+		layout.layout = descriptorSetLayout;
+		flags.clear();
+		bindings.clear();
+		return  layout;
 	}
 
 };

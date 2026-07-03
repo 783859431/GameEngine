@@ -5,13 +5,13 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-class TransformComponent {
+class Transform3D {
 public:
     // 构造函数
-    TransformComponent();
-    TransformComponent(const glm::vec3& position);
-    TransformComponent(const glm::vec3& position, const glm::vec3& rotation);
-    TransformComponent(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale);
+    Transform3D();
+    Transform3D(const glm::vec3& position);
+    Transform3D(const glm::vec3& position, const glm::vec3& rotation);
+    Transform3D(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale);
 
     // 设置位置
     void setPosition(const glm::vec3& position);
@@ -24,7 +24,7 @@ public:
     void setRotation(float pitch, float yaw, float roll);
     void rotate(const glm::vec3& delta);
     void rotate(float pitch, float yaw, float roll);
-
+    void setQuad(glm::quat quat);
     // 设置旋转（四元数）
     void setRotationQuat(const glm::quat& quaternion);
     void rotateQuat(const glm::quat& delta);
@@ -69,9 +69,9 @@ public:
     glm::vec3 transformDirection(const glm::vec3& direction) const;
 
     // 操作符重载
-    TransformComponent& operator=(const TransformComponent& other);
-    bool operator==(const TransformComponent& other) const;
-    bool operator!=(const TransformComponent& other) const;
+    Transform3D& operator=(const Transform3D& other);
+    bool operator==(const Transform3D& other) const;
+    bool operator!=(const Transform3D& other) const;
 
 private:
     glm::vec3 m_position;      // 位置

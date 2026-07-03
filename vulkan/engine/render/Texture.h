@@ -14,18 +14,20 @@
 
 class Texture
 {
-	    //获取字节大小
 
     int getPixelSize();
-    int getImageSize();
+    int getImageMemorySize();
+    VkDescriptorSet texSet = 0;
+    DSetLayout setlayout;
 public: 
-
+    std::string name;
     VmaAllocation allocation = nullptr;
     VkImage img = VK_NULL_HANDLE;
     VkImageView imageView = VK_NULL_HANDLE;
     VkSampler sampler = VK_NULL_HANDLE;
     int height = 0;
     int width = 0;
+
     uint32_t mipLevels = 1;
     VkFormat format = VK_FORMAT_R8G8B8A8_UNORM;
     VkImageLayout imageLayout = VK_IMAGE_LAYOUT_UNDEFINED;
@@ -36,8 +38,7 @@ public:
         VkImageUsageFlags usage= VK_IMAGE_USAGE_SAMPLED_BIT,
         VkFormat format= VK_FORMAT_R8G8B8A8_UNORM,  
         VkImageTiling tiling = VK_IMAGE_TILING_OPTIMAL);
-    static VkSampler getDefaultSampler();
-    static void destroyDefaultSampler();
+
     VkDescriptorImageInfo getDescriptorInfo() const {
         VkDescriptorImageInfo info{};
         info.imageLayout = imageLayout;
@@ -45,6 +46,8 @@ public:
         info.sampler = sampler;
         return info;
     }
+
+    
     //从文件中读取图片到GPU
     void loadRes(const std::string& path);
     //将数据拷贝到分配好的内存中
@@ -76,33 +79,31 @@ public:
         return imageView;
     }
     void createImageView(VkImageViewType tp = VK_IMAGE_VIEW_TYPE_2D);
-
-    static VkSampler createSampler()
+    void createSet()
     {
-        VkSampler sampler;
-        VkPhysicalDeviceProperties properties{};
-        vkGetPhysicalDeviceProperties(Device::getInstance().gpu, &properties);
-
-        VkSamplerCreateInfo samplerInfo{};
-        samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-        samplerInfo.magFilter = VK_FILTER_LINEAR;
-        samplerInfo.minFilter = VK_FILTER_LINEAR;
-        samplerInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-        samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-        samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-        samplerInfo.anisotropyEnable = VK_FALSE;
-        samplerInfo.maxAnisotropy = properties.limits.maxSamplerAnisotropy;
-        samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
-        samplerInfo.unnormalizedCoordinates = VK_FALSE;
-        samplerInfo.compareEnable = VK_FALSE;
-        samplerInfo.compareOp = VK_COMPARE_OP_ALWAYS;
-        samplerInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
-
-        if (vkCreateSampler(Device::getInstance().device, &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
-            throw std::runtime_error("failed to create texture sampler!");
-        }
-        return sampler;
+        DescriptorSetLayoutBuilder builder;
+        setlayout = builder.AddBinding(0, 
+            VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, 
+            VK_SHADER_STAGE_FRAGMENT_BIT, 1)
+            .build();
+        PoolManager::inst().allocSet(setlayout,&texSet);
+        WriteSetHelper  helper;
+        auto info = this->getDescriptorImageInfo();
+        helper.AddWriteImage(0, 
+            VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+            texSet, &info, 1)
+            .Update();
     }
+    VkDescriptorSet getSet()
+    {
+        if (texSet == 0)
+        {
+            createSet();
+        }
+        return texSet;
+    }
+   
+   
    
 
 
