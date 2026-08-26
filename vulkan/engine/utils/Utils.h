@@ -27,7 +27,7 @@ namespace Utils
     void vk_check(VkResult res);
     std::vector<const char*> getRequiredExtensions();
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface);
-    std::vector<char> readFile(const std::string& filename);
+
 
 };
 

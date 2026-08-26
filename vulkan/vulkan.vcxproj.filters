@@ -18,6 +18,12 @@
     <None Include="engine\render\shader\circle.bat" />
     <None Include="engine\render\shader\circle_border.vert" />
     <None Include="engine\render\shader\circle_border.frag" />
+    <None Include="engine\render\shader\poly.frag" />
+    <None Include="engine\render\shader\poly.vert" />
+    <None Include="engine\render\shader\particle.vert" />
+    <None Include="engine\render\shader\particle.frag" />
+    <None Include="engine\render\shader\font.vert" />
+    <None Include="engine\render\shader\font.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\logger\Logger.cpp" />
@@ -46,7 +52,7 @@
     <ClCompile Include="engine\render\Texture.cpp" />
     <ClCompile Include="engine\render\IndexBuffer.cpp" />
     <ClCompile Include="engine\render\Sampler.cpp" />
-    <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\EngineTestMain.cpp" />
     <ClCompile Include="engine\input\Input.cpp" />
     <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -65,6 +71,15 @@
     <ClCompile Include="engine\render\SpriteRender.cpp" />
     <ClCompile Include="engine\Global.cpp" />
     <ClCompile Include="engine\render\StorageBuffer.cpp" />
+    <ClCompile Include="engine\render\VBuffer.cpp" />
+    <ClCompile Include="engine\physic\BoxCollider2D.cpp" />
+    <ClCompile Include="engine\physic\BallCollider2D.cpp" />
+    <ClCompile Include="engine\physic\Collider.cpp" />
+    <ClCompile Include="engine\render\Particle.cpp" />
+    <ClCompile Include="engine\physic\debug\DebugDraw.cpp" />
+    <ClCompile Include="engine\imgui\imguiINI.cpp" />
+    <ClCompile Include="MyGame.cpp" />
+    <ClCompile Include="engine\render\font\TextRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\logger\Logger.h" />
@@ -95,7 +110,7 @@
     <ClInclude Include="engine\render\stb_image.h" />
     <ClInclude Include="engine\render\IndexBuffer.h" />
     <ClInclude Include="engine\render\Sampler.h" />
-    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\EngineTestMain.h" />
     <ClInclude Include="engine\input\Input.h" />
     <ClInclude Include="engine\render\DescriptorSetManager.h" />
     <ClInclude Include="engine\render\camera\Camera.h" />
@@ -110,5 +125,14 @@
     <ClInclude Include="engine\Global.h" />
     <ClInclude Include="engine\render\3d\transform3D.h" />
     <ClInclude Include="engine\render\StorageBuffer.h" />
+    <ClInclude Include="engine\render\VBuffer.h" />
+    <ClInclude Include="engine\physic\BoxCollider2D.h" />
+    <ClInclude Include="engine\physic\BallCollider2D.h" />
+    <ClInclude Include="engine\physic\Collider.h" />
+    <ClInclude Include="engine\render\Particle.h" />
+    <ClInclude Include="engine\physic\debug\DebugDraw.h" />
+    <ClInclude Include="engine\imgui\imguiINI.h" />
+    <ClInclude Include="MyGame.h" />
+    <ClInclude Include="engine\render\font\TextRender.h" />
   </ItemGroup>
 </Project>

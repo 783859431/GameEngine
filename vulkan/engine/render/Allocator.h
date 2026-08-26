@@ -41,7 +41,7 @@ public:
     static void allocIndexBuffer(AllocatedBuffer& alloc);
     static void allocStagingBuffer(AllocatedBuffer& alloc);
     static void freeBuffer(AllocatedBuffer& buffer);
-    static void freeImage(VkImage image, VmaAllocation alloc);
+    static void freeImage(VkImage& image, VmaAllocation& alloc);
     static void mapBuffer(AllocatedBuffer& buf);
     static void unMapBuffer(AllocatedBuffer& buf);
     static void allocUniformBuffer(AllocatedBuffer& alloc);

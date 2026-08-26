@@ -48,9 +48,12 @@ void SamplerManager::createDefaultSamplers()
 
 void SamplerManager::clean()
 {
-    vkDestroySampler(Device::getInstance().device, lr, 0);
-    vkDestroySampler(Device::getInstance().device, lc, 0);
-    vkDestroySampler(Device::getInstance().device, nr, 0);
+    if(lr)
+        vkDestroySampler(Device::getInstance().device, lr, 0);
+    if(lc)
+        vkDestroySampler(Device::getInstance().device, lc, 0);
+    if(nr)
+        vkDestroySampler(Device::getInstance().device, nr, 0);
 
 }
 

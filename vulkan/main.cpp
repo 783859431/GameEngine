@@ -1,15 +1,20 @@
-#include "engine/Engine.h"
+#include "MyGame.h"
 #include <iostream>
 int main() {
  
 
-    try {
-       VulkanEngine engine;
-       engine.Run();
+    try 
+    {
+        VulkanEngine* engine = new MyGame();
+        engine->Init();
+        engine->Run();
+        engine->CleanUp();
+        delete engine;
 
     }
-    catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
+    catch (const std::exception& e) 
+    {
+       std::cerr << e.what() << std::endl;
     }
 
     PoolManager::inst().clean();

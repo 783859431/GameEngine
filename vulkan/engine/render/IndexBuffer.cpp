@@ -2,22 +2,17 @@
 
 void IndexBuffer::allocBuffer(uint32_t size)
 {
-	allocBuf.size = size;
-	indexCount = size / sizeof(int);
-	Allocator::allocIndexBuffer(allocBuf);
+	alloc(size);
 }
 
 void IndexBuffer::updateIndex(void* indexBuf, int size)
 {
-	memcpy(allocBuf.mapped, indexBuf, size);
+	copy(indexBuf, size);
 }
-VkBuffer IndexBuffer::getBuffer()
+void IndexBuffer::alloc(uint32_t size)
 {
-	return allocBuf._buffer;
-}
+	bf.size = size;
+	indexCount = size / sizeof(int);
+	Allocator::allocIndexBuffer(bf);
 
-void IndexBuffer::clean() {
-
-//	Allocator::unMapBuffer(allocBuf);
-	Allocator::freeBuffer(allocBuf);
 }

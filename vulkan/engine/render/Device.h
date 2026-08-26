@@ -2,7 +2,10 @@
 
 #include "vulkan/vulkan.h"
 #include "../utils/Utils.h"
+#include "functional"
 #define MAX_FRAMES_IN_FLIGHT 2
+
+void DoTimes(std::function<void(int)>);
 class Device
 {
 public:

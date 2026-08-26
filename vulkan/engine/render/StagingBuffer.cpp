@@ -2,21 +2,14 @@
 #include <algorithm>
 void StagingBuffer::allocBuffer(uint32_t size)
 {
-	m_allocBuf.size = size;
-	Allocator::allocStagingBuffer(m_allocBuf);
+	alloc(size);
 }
 
 void StagingBuffer::copyTempData(char* data,int size)
 {
-	int s = std::min(size, (int)m_allocBuf.size);
-	memcpy(m_allocBuf.mapped, data, s);
+	copy(data,size);
 }
 
-void StagingBuffer::clean() {
-
-	//Allocator::unMapBuffer(m_allocBuf);
-	Allocator::freeBuffer(m_allocBuf);
-}
 
 
 void StagingBuffer::copyToImage(VkImage dst, int width, int height)
@@ -40,7 +33,7 @@ void StagingBuffer::copyToImage(VkImage dst, int width, int height)
 		1
 	};
 
-	vkCmdCopyBufferToImage(commadBuffer.m_command, m_allocBuf._buffer, dst, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+	vkCmdCopyBufferToImage(commadBuffer.m_command, bf._buffer, dst, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 	commadBuffer.endOnce();
 
 
@@ -57,7 +50,14 @@ void StagingBuffer::copyToBuffer(AllocatedBuffer& dst)
 	CommandBuffer commadBuffer;
 	commadBuffer.create();
 	commadBuffer.begainOnce();
-	vkCmdCopyBuffer(commadBuffer.m_command, m_allocBuf._buffer, dst._buffer, 1, &region);
+	vkCmdCopyBuffer(commadBuffer.m_command, bf._buffer, dst._buffer, 1, &region);
 	commadBuffer.endOnce();
+
+}
+
+void StagingBuffer::alloc(uint32_t size)
+{
+	bf.size = size;
+	Allocator::allocStagingBuffer(bf);
 
 }

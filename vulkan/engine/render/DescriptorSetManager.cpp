@@ -6,7 +6,7 @@
 
 
 
-void DPool::allocSets(std::vector<DSetLayout>& setLayouts, std::vector<VkDescriptorSet>& outSets)
+void DPool::allocSets(std::vector<DSetLayout*>& setLayouts, std::vector<VkDescriptorSet>& outSets)
 {
 
     if (outSets.size() < setLayouts.size())
@@ -16,12 +16,12 @@ void DPool::allocSets(std::vector<DSetLayout>& setLayouts, std::vector<VkDescrip
 
 
 }
-void DPool::_allocSets(DSetLayout* setLayouts, uint32_t count, VkDescriptorSet* sets)
+void DPool::_allocSets(DSetLayout** setLayouts, uint32_t count, VkDescriptorSet* sets)
 {
     std::vector<VkDescriptorSetLayout> temp;
     for (int i = 0; i < count; i++)
     {
-        temp.push_back(setLayouts[i].layout);
+        temp.push_back(setLayouts[i]->layout);
     }
     VkDescriptorSetAllocateInfo allocInfo{};
     allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -36,7 +36,7 @@ void DPool::_allocSets(DSetLayout* setLayouts, uint32_t count, VkDescriptorSet* 
 
     for (int i=0;i<count;i++)
     {
-        for (auto [k, v] : setLayouts[i].layoutInfo)
+        for (auto [k, v] : setLayouts[i]->layoutInfo)
         {
             this->poolInfo[k].usage += v;
             this->poolInfo[k].remain -= v;
@@ -46,7 +46,8 @@ void DPool::_allocSets(DSetLayout* setLayouts, uint32_t count, VkDescriptorSet* 
 
 void DPool::clean()
 {
-    vkDestroyDescriptorPool(Device::getInstance().device,this->setsPool,0);
+    if(this->setsPool)
+        vkDestroyDescriptorPool(Device::getInstance().device,this->setsPool,0);
 }
 
 
@@ -64,15 +65,15 @@ void PoolManager::init()
 
 }
 
-void PoolManager::allocSets(std::vector<DSetLayout>& layouts, std::vector<VkDescriptorSet>& outSets)
+void PoolManager::allocSets(std::vector<DSetLayout*>& layouts, std::vector<VkDescriptorSet>& outSets)
 {
     int poolIndex = findOrCreatePool(layouts);
     pools[poolIndex]->allocSets(layouts,outSets);
 }
 
-void PoolManager::allocSets(DSetLayout* layouts, int count, VkDescriptorSet* outsets)
+void PoolManager::allocSets(DSetLayout** layouts, int count, VkDescriptorSet* outsets)
 {
-    std::vector<DSetLayout> temp;
+    std::vector<DSetLayout*> temp;
     for (int i = 0; i < count; i++)
     {
         temp.push_back(layouts[i]);
@@ -86,10 +87,10 @@ void PoolManager::allocSets(DSetLayout* layouts, int count, VkDescriptorSet* out
 
 void PoolManager::allocSet(DSetLayout& layout, VkDescriptorSet* outset)
 {
-    std::vector<DSetLayout> temp;
-    temp.push_back(layout);
+    std::vector<DSetLayout*> temp;
+    temp.push_back(&layout);
     int poolIndex = findOrCreatePool(temp);
-    pools[poolIndex]->_allocSets(&layout, 1,outset);
+    pools[poolIndex]->_allocSets(temp.data(), 1, outset);
 }
 
 int  PoolManager::createPool(std::vector<VkDescriptorPoolSize>& poolSize,uint32_t maxSets)
@@ -121,7 +122,7 @@ int  PoolManager::createPool(std::vector<VkDescriptorPoolSize>& poolSize,uint32_
     return pools.size()-1;
 }
 
-int PoolManager::findOrCreatePool(std::vector<DSetLayout>& layouts)
+int PoolManager::findOrCreatePool(std::vector<DSetLayout*>& layouts)
 {
 
 
@@ -129,7 +130,7 @@ int PoolManager::findOrCreatePool(std::vector<DSetLayout>& layouts)
     //统计所有资源类型和数量
     for (int i = 0; i < layouts.size(); i++)
     {
-        auto& info = layouts[i].layoutInfo;
+        auto& info = layouts[i]->layoutInfo;
         for (auto o : info)
         {
             total[o.first] += o.second;

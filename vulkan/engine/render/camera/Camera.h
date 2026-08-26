@@ -105,3 +105,5 @@ private:
     // 
 
 };
+void WorldToScreen(const Camera& cam, const glm::vec3& world, glm::vec2& screen);
+void ScreenToWorld(const Camera& cam, const glm::vec2& screen, glm::vec3& world, float ndcZ = 0.0f);

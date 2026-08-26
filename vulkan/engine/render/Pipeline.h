@@ -2,6 +2,7 @@
 #include "vulkan/vulkan.h"
 #include "Shader.h"
 #include "Device.h"
+
 struct PipelineConfig {
 
     VkRenderPass renderPass = 0;
@@ -141,6 +142,7 @@ struct PipelineConfig {
 /// <summary>
 /// pipeline 就是本质的流水线。本质都是对图元数据的组装过程。
 /// </summary>
+/// 
 class Pipeline
 {
 

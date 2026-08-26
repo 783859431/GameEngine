@@ -10,7 +10,8 @@ void Allocator::init() {
 }
 
 void Allocator::clean() {
-    vmaDestroyAllocator(allocator);
+    if(allocator)
+        vmaDestroyAllocator(allocator);
 }
 /// <summary>
 /// 在Vulkan中，内存分配是一个复杂的过程，因为你需要考虑内存类型、内存属性以及性能需求。
@@ -104,12 +105,14 @@ void Allocator::allocStagingBuffer(AllocatedBuffer& alloc) {
 //销毁缓冲区
 void Allocator::freeBuffer(AllocatedBuffer& buffer) {
     vmaDestroyBuffer(allocator, buffer._buffer, buffer._allocation);
+    buffer._allocation = 0;
 }
 
 //销毁图像缓冲区
-void Allocator::freeImage(VkImage img, VmaAllocation alloc) {
+void Allocator::freeImage(VkImage& img, VmaAllocation& alloc) {
     vmaDestroyImage(allocator, img, alloc);
-
+    alloc = 0;
+    img = 0;
 }
 //映射GPU缓冲区内存到CPU地址空间，允许CPU访问缓冲区数据
 void Allocator::mapBuffer(AllocatedBuffer& buf)

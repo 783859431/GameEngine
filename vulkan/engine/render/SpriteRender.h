@@ -5,7 +5,7 @@
 #include "StorageBuffer.h"
 struct InstanceData
 {
-	glm::mat4 model;
+	glm::vec4 transform;
 	Rect rect; // 决定了采样位置
 	glm::vec4 sheetWH;// 采样纹理的长宽
 };
@@ -13,25 +13,29 @@ struct InstanceData
 class SpriteRender
 {
 	Pipeline spritePipeline;
-	StorageBuffer sbuf;
+	StorageBuffer sbuf[MAX_FRAMES_IN_FLIGHT];
+	VkDescriptorSet sets[MAX_FRAMES_IN_FLIGHT];
 	std::unordered_map<Texture*, std::vector<InstanceData>> diffTex;
 	DSetLayout setLayout;
-	DSetLayout layout2;
+	DSetLayout setLayout2;
 	void createDescriptorSet();
-
+	
 public:
+	~SpriteRender();
 
-	VkDescriptorSet sets[2];
 
-	void init(VkRenderPass pass, VkDescriptorSetLayout setLayout0);
+	void init(VkRenderPass pass);
 
-	void createPipeline(VkRenderPass pass, VkDescriptorSetLayout setLayout);
+	void createPipeline(VkRenderPass pass);
 
 	void updateTexture(CommandBuffer& cmd, Texture* tex);
 
 	void drawSprite(Sprite* sp);
 
-	void flush(CommandBuffer& cmd);
+	void flush(CommandBuffer& cmd,int  frame);
+
+	void clean();
+
 
 
 };

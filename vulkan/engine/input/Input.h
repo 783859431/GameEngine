@@ -1,6 +1,8 @@
 #pragma once
 #include "GLFW/glfw3.h"
 #include <iostream>
+#include <algorithm>
+#include "../Global.h"
 namespace Input
 {
 	typedef enum ButtonType {
@@ -56,15 +58,11 @@ namespace Input
 		static inline double MouseDeltaY() { return y - lastY; }
 		static  void Update(GLFWwindow* window)
 		{
-			static bool first = true;
+	
 			glfwGetCursorPos(window, &x, &y);
-			if (first)
-			{
-				lastX = x;
-				lastY = y;
-				first = false;
+			x = std::clamp((float)x, 0.0f, WINDOW_WIDTH);
+			y = std::clamp((float)y, 0.0f, WINDOW_HEIGHT);
 
-			}
 			// 获取当前位置
 			deltaX = x - lastX;
 			deltaY = y - lastY;

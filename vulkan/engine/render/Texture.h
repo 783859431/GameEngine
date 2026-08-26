@@ -7,8 +7,6 @@
 #include "StagingBuffer.h"
 #include "Device.h"
 /// <summary>
-/// 从文件中加载图片
-/// 将图片上传GPU
 /// 
 /// </summary>
 
@@ -50,6 +48,7 @@ public:
     
     //从文件中读取图片到GPU
     void loadRes(const std::string& path);
+    void loadFromMemory(void* data, int width,int height, VkFormat format);
     //将数据拷贝到分配好的内存中
     void copyToGpu(char* imgRawData,int size);
     void clean();
@@ -102,10 +101,6 @@ public:
         }
         return texSet;
     }
-   
-   
-   
-
 
 };
 

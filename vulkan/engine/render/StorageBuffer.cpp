@@ -2,15 +2,13 @@
 
 void StorageBuffer::allocBuffer(uint32_t size)
 {
-	m_allocBuf.size = size;
-	Allocator::allocStorageBuffer(m_allocBuf);
+	alloc(size);
 
 }
 
 void StorageBuffer::updateData(void* uniformData, int size, int offset)
 {
-	int s = std::min(size + offset, (int)m_allocBuf.size);
-	memcpy((char*)m_allocBuf.mapped + offset, uniformData, s);
+	copy(uniformData, size, offset);
 
 }
 
@@ -19,17 +17,13 @@ VkDescriptorBufferInfo StorageBuffer::getDescriptorInfo()
 	VkDescriptorBufferInfo info;
 	info.buffer = this->getBuffer();
 	info.offset = 0;
-	info.range = m_allocBuf.size;
+	info.range = bf.size;
 	return info;
 }
 
-VkBuffer StorageBuffer::getBuffer()
+void StorageBuffer::alloc(uint32_t size)
 {
-	return m_allocBuf._buffer;
+	bf.size = size;
+	Allocator::allocStorageBuffer(bf);
 
-}
-
-void StorageBuffer::clean()
-{
-	Allocator::freeBuffer(m_allocBuf);
 }

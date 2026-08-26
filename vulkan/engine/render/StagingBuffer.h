@@ -1,33 +1,20 @@
 #pragma once
-#include "vulkan/vulkan.h"
-#include "vk_mem_alloc.h"
-#include "Allocator.h"
-#include <memory>
+#include "VBuffer.h"
 #include "CommandBuffer.h"
-class StagingBuffer
+class StagingBuffer:public VBuffer
 {
 
-	AllocatedBuffer m_allocBuf;
 public :
 	void allocBuffer(uint32_t size);
 
 	void copyTempData(char* data,int size);
 
-	void clean();
-
 	void copyToImage(VkImage dst, int width, int height);
-
 
 	void copyToBuffer(AllocatedBuffer& dst);
 
-	~StagingBuffer()
-	{
-		if(m_allocBuf._allocation)
-			clean();
-	}
-	VkBuffer getBuffer(){
-		return m_allocBuf._buffer;
-	}
+	// 通过 VBuffer 继承
+	void alloc(uint32_t size) override;
 
 };
 

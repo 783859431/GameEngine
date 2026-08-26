@@ -104,14 +104,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;$(SolutionDir)vulkan\threeparty\ttf\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,8 +130,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\vulkan\Lib;$(SolutionDir)vulkan\threeparty\GLFW\lib;$(SolutionDir)vulkan\threeparty\mpg123\lib;$(SolutionDir)vulkan\threeparty\openal\libs\Win64;$(SolutionDir)vulkan\threeparty\ogg\lib;$(SolutionDir)vulkan\threeparty\box2d\lib;$(SolutionDir)vulkan\threeparty\vorbis\lib;$(SolutionDir)vulkan\threeparty\ttf\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;libogg.lib;libmpg123.lib;libvorbis_static.lib;libvorbisfile_static.lib;OpenAL32.lib;box2d.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -145,6 +145,8 @@
     <None Include="engine\render\shader\circle_border.frag" />
     <None Include="engine\render\shader\circle_border.vert" />
     <None Include="engine\render\shader\compile_shader.bat" />
+    <None Include="engine\render\shader\font.frag" />
+    <None Include="engine\render\shader\font.vert" />
     <None Include="engine\render\shader\fragment.frag">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
@@ -152,6 +154,10 @@
     <None Include="engine\render\shader\line.bat" />
     <None Include="engine\render\shader\line.frag" />
     <None Include="engine\render\shader\line.vert" />
+    <None Include="engine\render\shader\particle.frag" />
+    <None Include="engine\render\shader\particle.vert" />
+    <None Include="engine\render\shader\poly.frag" />
+    <None Include="engine\render\shader\poly.vert" />
     <None Include="engine\render\shader\sample.frag" />
     <None Include="engine\render\shader\sample.vert" />
     <None Include="engine\render\shader\vertex.vert">
@@ -160,6 +166,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="engine\imgui\imguiINI.cpp" />
+    <ClCompile Include="engine\physic\Collider.cpp" />
+    <ClCompile Include="engine\physic\BallCollider2D.cpp" />
+    <ClCompile Include="engine\physic\BoxCollider2D.cpp" />
     <ClCompile Include="engine\audio\AudioData.cpp" />
     <ClCompile Include="engine\audio\AudioDecoder.cpp" />
     <ClCompile Include="engine\audio\AudioDecoderFactory.cpp" />
@@ -169,15 +179,17 @@
     <ClCompile Include="engine\audio\Mp3Decoder.cpp" />
     <ClCompile Include="engine\audio\OggDecoder.cpp" />
     <ClCompile Include="engine\audio\WinAudioEngine.cpp" />
-    <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\EngineTestMain.cpp" />
     <ClCompile Include="engine\Global.cpp" />
     <ClCompile Include="engine\input\Input.cpp" />
+    <ClCompile Include="engine\physic\debug\DebugDraw.cpp" />
     <ClCompile Include="engine\render\Allocator.cpp" />
     <ClCompile Include="engine\render\camera\Camera.cpp" />
     <ClCompile Include="engine\render\CommandBuffer.cpp" />
     <ClCompile Include="engine\render\DescriptorSetManager.cpp" />
     <ClCompile Include="engine\render\Device.cpp" />
     <ClCompile Include="engine\render\Material.cpp" />
+    <ClCompile Include="engine\render\Particle.cpp" />
     <ClCompile Include="engine\render\Texture.cpp" />
     <ClCompile Include="engine\render\IndexBuffer.cpp" />
     <ClCompile Include="engine\render\Pipeline.cpp" />
@@ -199,14 +211,22 @@
     <ClCompile Include="engine\render\PolygonRender.cpp" />
     <ClCompile Include="engine\render\SpriteRender.cpp" />
     <ClCompile Include="engine\render\StorageBuffer.cpp" />
+    <ClCompile Include="MyGame.cpp" />
+    <ClCompile Include="engine\render\font\TextRender.cpp" />
     <ClCompile Include="threeparty\imgui\imgui.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_vulkan.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="engine\render\VBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="engine\imgui\imguiINI.h" />
+    <ClInclude Include="engine\physic\Collider.h" />
+    <ClInclude Include="engine\physic\BallCollider2D.h" />
+    <ClInclude Include="engine\physic\BoxCollider2D.h" />
+    <ClInclude Include="engine\physic\debug\DebugDraw.h" />
     <ClInclude Include="engine\render\3d\transform3D.h" />
     <ClInclude Include="engine\render\Animation.h" />
     <ClInclude Include="engine\audio\AudioData.h" />
@@ -218,7 +238,7 @@
     <ClInclude Include="engine\audio\Mp3Decoder.h" />
     <ClInclude Include="engine\audio\OggDecoder.h" />
     <ClInclude Include="engine\audio\WinAudioEngine.h" />
-    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\EngineTestMain.h" />
     <ClInclude Include="engine\input\Input.h" />
     <ClInclude Include="engine\render\3d\tiny_obj_loader.h" />
     <ClInclude Include="engine\render\Allocator.h" />
@@ -228,6 +248,7 @@
     <ClInclude Include="engine\render\Device.h" />
     <ClInclude Include="engine\Global.h" />
     <ClInclude Include="engine\render\Material.h" />
+    <ClInclude Include="engine\render\Particle.h" />
     <ClInclude Include="engine\render\Sprite.h" />
     <ClInclude Include="engine\render\Texture.h" />
     <ClInclude Include="engine\render\IndexBuffer.h" />
@@ -250,6 +271,9 @@
     <ClInclude Include="engine\render\PolygonRender.h" />
     <ClInclude Include="engine\render\SpriteRender.h" />
     <ClInclude Include="engine\render\StorageBuffer.h" />
+    <ClInclude Include="engine\render\VBuffer.h" />
+    <ClInclude Include="MyGame.h" />
+    <ClInclude Include="engine\render\font\TextRender.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

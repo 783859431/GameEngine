@@ -1,188 +1,162 @@
 #include "PolygonRender.h"
 #include <array>
 #include "DescriptorSetManager.h"
-void PolygonRender::createDescriptorSet()
-{
-    DescriptorSetLayoutBuilder builder;
-    setLayout_cir = builder
-        .AddBinding(0,
-            VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC,
-            VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 1)
-        .build();
 
 
-    PoolManager::inst().allocSet(setLayout_cir,&set_cir);
+extern VkDescriptorSet g_set0[];
+extern VkDescriptorSetLayout g_layout;
 
-
-    WriteSetHelper helper;
-    VkDescriptorBufferInfo bf;
-    bf.buffer = this->ubo.getBuffer();
-    bf.offset = 0;
-    bf.range =8;
-    helper
-        .AddWriteBuffer(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, set_cir, &bf)
-        .Update();
-
-}
-
-void PolygonRender::init(VkDescriptorSetLayout lay, VkRenderPass pass)
+void PolygonRender::init( VkRenderPass pass)
 {
  
-	vtx.allocBuffer(maxVertCount*sizeof(Point));
-    ubo.allocBuffer(maxCircleCount*Device::getInstance().uniformAlign);
-    createDescriptorSet();
-    createPipeline(pass,lay);
+    DoTimes([&](int i) {
+        vtx_poly[i].allocBuffer(maxPolyCount * sizeof(PolygenInstance));
+        vtx_circle[i].allocBuffer(maxCircleCount * sizeof(CircleInstance));
+        vtx_line[i].allocBuffer(maxLineCount * sizeof(Line));
+        });
+	
+    createPipeline(pass);
 }
 
-void PolygonRender::setLineWidth(float w)
+void PolygonRender::setLineWidth(CommandBuffer& cmd, float w)
 {
-    vkCmdSetLineWidth(cmd->m_command,w);
+    vkCmdSetLineWidth(cmd.m_command,w);
 }
 
 
 
-void PolygonRender::createPipeline(VkRenderPass pass, VkDescriptorSetLayout setLayout)
+void PolygonRender::createPipeline(VkRenderPass pass)
 {
 	PipelineConfig cf = PipelineConfig::basic();
 
-    std::array<VkVertexInputBindingDescription, 1> binding{};
-    binding[0].binding = 0;
-    binding[0].stride = sizeof(Point);
-    binding[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+    auto desp = PolygenInstance::getDescription();
+    auto binding = PolygenInstance::getBinding();
 
-
-    std::array<VkVertexInputAttributeDescription, 1> attr{};
-    attr[0].binding = 0;
-    attr[0].location = 0;
-    attr[0].format = VK_FORMAT_R32G32_SFLOAT;
-    attr[0].offset = 0;
-
-	cf.vertexInputInfo.vertexAttributeDescriptionCount = attr.size();
+	cf.vertexInputInfo.vertexAttributeDescriptionCount = desp.size();
 	cf.vertexInputInfo.vertexBindingDescriptionCount = binding.size();
-	cf.vertexInputInfo.pVertexAttributeDescriptions = attr.data();
+	cf.vertexInputInfo.pVertexAttributeDescriptions = desp.data();
 	cf.vertexInputInfo.pVertexBindingDescriptions = binding.data();
     
-    VkPushConstantRange range;
-    range.offset = 0;
-    range.size = sizeof(glm::mat4);
-    range.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-    cf.pushConstants.push_back(range);
-
     cf.renderPass = pass;
-    cf.setLayouts.push_back(setLayout);
-    cf.rasterizer.lineWidth = 2;
-    cf.rasterizer.cullMode = VK_CULL_MODE_NONE;
-    cf.rasterizer.polygonMode = VK_POLYGON_MODE_LINE;
-    cf.inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_LINE_STRIP;
+    cf.setLayouts.push_back(g_layout);
 
-    cf.fragShader = Shader::LoadShader("shader/lineFrag.spv");
-    cf.vertShader = Shader::LoadShader("shader/lineVert.spv");
+    cf.fragShader = Shader::LoadShader("shader/polyFrag.spv");
+    cf.vertShader = Shader::LoadShader("shader/polyVert.spv");
 
-    pipeline.create(cf);
+    polyPipeline.create(cf);
 
+    PipelineConfig cf2 = PipelineConfig::basic();
+    auto desp2 = CircleInstance::getDescription();
+    auto binding2 = CircleInstance::getBinding();
+
+    cf2.vertexInputInfo.vertexAttributeDescriptionCount = desp2.size();
+    cf2.vertexInputInfo.vertexBindingDescriptionCount = binding2.size();
+    cf2.vertexInputInfo.pVertexAttributeDescriptions = desp2.data();
+    cf2.vertexInputInfo.pVertexBindingDescriptions = binding2.data();
+
+    cf2.renderPass = pass;
+    cf2.setLayouts.push_back(g_layout);
+
+    cf2.fragShader = Shader::LoadShader("shader/circleFrag.spv");
+    cf2.vertShader = Shader::LoadShader("shader/circleVert.spv");
+    pipeline_cir.create(cf2);
     
-    cf.vertexInputInfo.vertexAttributeDescriptionCount = 0;
-    cf.vertexInputInfo.vertexBindingDescriptionCount = 0;
-    cf.vertexInputInfo.pVertexAttributeDescriptions =0;
-    cf.vertexInputInfo.pVertexBindingDescriptions = 0;
-    cf.rasterizer.lineWidth = 1;
-    cf.rasterizer.cullMode = VK_CULL_MODE_NONE;
-    cf.rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
-    cf.inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
-    cf.fragShader = Shader::LoadShader("shader/circleFrag.spv");
-    cf.vertShader = Shader::LoadShader("shader/circleVert.spv");
-    cf.setLayouts.push_back(this->setLayout_cir.layout);
-    pipeline_cir.create(cf);
+
+    PipelineConfig cf3 = PipelineConfig::basic();
+    auto desp3 = Line::getDescription();
+    auto binding3 = Line::getBinding();
+
+    cf3.vertexInputInfo.vertexAttributeDescriptionCount = desp3.size();
+    cf3.vertexInputInfo.vertexBindingDescriptionCount = binding3.size();
+    cf3.vertexInputInfo.pVertexAttributeDescriptions = desp3.data();
+    cf3.vertexInputInfo.pVertexBindingDescriptions = binding3.data();
+
+    cf3.renderPass = pass;
+    cf3.setLayouts.push_back(g_layout);
+
+    cf3.fragShader = Shader::LoadShader("shader/lineFrag.spv");
+    cf3.vertShader = Shader::LoadShader("shader/lineVert.spv");
+    pipeline_line.create(cf3);
+
 }
 
-void PolygonRender::drawPolygon(Point* points, int count, Transform2d& trans)
+void PolygonRender::drawPolygon(const Transform2d& transform, const Point* points, int count, float radius, const glm::vec4& color)
 {
 
-    PolygonDrawData p;
-    p.transform = trans;
-    for (int i = 0; i < count; i++)
+    PolygenInstance p;
+    p.color = color;
+    p.transform = {transform.x,transform.y,transform.c,transform.s};
+  
+    int n = count < 8 ? count : 8;
+    glm::vec2* pv2 = (glm::vec2*) & p.point12;
+
+    for (int i = 0; i < n; ++i)
     {
-        p.points.push_back(points[i]);
+        pv2[i] = {points[i].x,points[i].y};
     }
-    p.points.push_back(points[0]);
+    p.pointsCount = n;
+    p.rad = radius;
+
     polys.push_back(p);
 
 }
 
-void PolygonRender::drawCircle(float cx, float cy, float rad, float thickness , Transform2d& trans)
+void PolygonRender::drawCircle(const Transform2d& trans, float rad, const glm::vec4& color)
 {
-    CircleDrawData drawData;
-    drawData.transform = trans;
-    drawData.circle.c.x = cx;
-    drawData.circle.c.y = cy;
-    drawData.circle.rad = rad;
-    drawData.circle.thickness = thickness;
-    cirs.push_back(drawData);
+
+    CircleInstance circle;
+    circle.transform = { trans.x,trans.y,trans.c,trans.s };
+    circle.radius = rad;
+    circle.color = color;
+    cirs.push_back(circle);
 }
 
-
-
-void PolygonRender::flushPloy()
+void PolygonRender::drawLine(const Point& pt1, const Point& pt2, const glm::vec4& color)
 {
-    int offset = 0;
-    int index = 0;
-    glm::mat4 transform(1.0f);
-    setLineWidth(2);
-    for (int i = 0; i < polys.size(); i++)
-    {
-        transform[0][0] = polys[i].transform.c;
-        transform[0][1] = polys[i].transform.s;
-        transform[1][0] = -polys[i].transform.s;
-        transform[1][1] = polys[i].transform.c;
-        transform[3][0] = polys[i].transform.x ;
-        transform[3][1] = polys[i].transform.y;
-        int vcount = polys[i].points.size();
-        int size = vcount * sizeof(Point);
-        vtx.updateVextex(polys[i].points.data(), size,offset);
-        offset += size;
-        cmd->bindPipeLine(this->pipeline.get());
-        cmd->bindVertex(vtx.getBuffer());
-        cmd->pushConst(
-            pipeline.getLayout(), 
-            VK_SHADER_STAGE_VERTEX_BIT, 
-            &transform, 
-            sizeof(transform));
-        cmd->draw(vcount,1,index);
-        index += vcount;
-    }
+    Line line;
+    line.p1 = pt1;
+    line.p2 = pt2;
+    line.color = color;
+    lines.push_back(line);
+}
+
+void PolygonRender::flushPloys(CommandBuffer& cmd,int frame)
+{
+    if (polys.size() == 0) return;
+    cmd.bindPipeLine(this->polyPipeline.get());
+    cmd.bindSets(this->polyPipeline.getLayout(), g_set0, 1);
+    cmd.bindVertex(vtx_poly[frame].getBuffer());
+    vtx_poly[frame].updateVextex(polys.data(), polys.size() * sizeof(PolygenInstance));
+    cmd.draw(6, polys.size());
     polys.clear();
 }
 
-void PolygonRender::flushCircle()
+void PolygonRender::flushCircles(CommandBuffer& cmd,int frame)
 {
-
-    glm::mat4 transform(1.0f);
-    uint32_t doffset = 0;
-    
-    for (int i = 0; i < cirs.size(); i++)
-    {
-        float r = cirs[i].circle.rad;
-
-        transform[0][0] = cirs[i].transform.c*r;
-        transform[0][1] = cirs[i].transform.s*r;
-        transform[1][0] = -cirs[i].transform.s*r;
-        transform[1][1] = cirs[i].transform.c*r;
-        transform[3][0] = cirs[i].transform.x;
-        transform[3][1] = cirs[i].transform.y;
-    
-        ubo.updateData(&(cirs[i].circle.rad),8,doffset);
-        cmd->bindPipeLine(this->pipeline_cir.get());
-        cmd->bindSets(this->pipeline_cir.getLayout(), &set_cir, 1, 1, 1, &doffset);
-        cmd->pushConst(
-            pipeline_cir.getLayout(),
-            VK_SHADER_STAGE_VERTEX_BIT,
-            &transform,
-            sizeof(transform));
-        cmd->draw(6);
-        doffset += 64;
-    }
-
+    if (cirs.size() == 0) return;
+    cmd.bindPipeLine(this->pipeline_cir.get());
+    cmd.bindSets(this->pipeline_cir.getLayout(), g_set0, 1);
+    cmd.bindVertex(vtx_circle[frame].getBuffer());
+    vtx_circle[frame].updateVextex(cirs.data(), cirs.size() * sizeof(CircleInstance));
+    cmd.draw(6, cirs.size());
     cirs.clear();
+}
+
+void PolygonRender::flushLines(CommandBuffer& cmd, int frame)
+{
+    if (lines.size() == 0) return;
+    cmd.bindPipeLine(this->pipeline_line.get());
+    cmd.bindSets(this->pipeline_line.getLayout(), g_set0, 1);
+    cmd.bindVertex(vtx_line[frame].getBuffer());
+    vtx_line[frame].updateVextex(lines.data(), lines.size() * sizeof(Line));
+    cmd.draw(6, lines.size());
+    lines.clear();
+
+}
+
+void PolygonRender::clean()
+{
+   
 }
 
 

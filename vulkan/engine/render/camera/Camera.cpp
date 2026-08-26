@@ -1,5 +1,29 @@
 #include "Camera.h"
+#include "../../Global.h"
 CamData camData;
+void WorldToScreen(const Camera& cam, const glm::vec3& world, glm::vec2& screen)
+{
+   glm::vec4 clipPos =  cam.getViewProjectionMatrix() * glm::vec4(world,1.0f);
+   glm::vec3 ndcPos = glm::vec3(clipPos) / clipPos.w;
+   screen.x = (ndcPos.x * 0.5f + 0.5f) * WINDOW_WIDTH;
+   screen.y = (ndcPos.y * 0.5f + 0.5f) * WINDOW_HEIGHT;
+
+}
+void ScreenToWorld(const Camera& cam, const glm::vec2& screen ,  glm::vec3& world, float ndcZ) 
+{
+    glm::vec2 ndcPos;
+
+    ndcPos.x = (screen.x / WINDOW_WIDTH - 0.5f) / 0.5f;
+    ndcPos.y = (screen.y / WINDOW_HEIGHT - 0.5f) / 0.5f;
+
+    glm::vec4 clipPos = glm::vec4(ndcPos, ndcZ,1.0f);
+
+    glm::vec4 w4 = glm::inverse(cam.getViewProjectionMatrix())*clipPos;
+    
+    world.x = w4.x / w4.w;
+    world.y = w4.y / w4.w;
+    world.z = 0.0f;
+}
 Camera::Camera()
     : m_position(0.0f, 0.0f, -5.0f)
     , m_target(0.0f, 0.0f, 0.0f)

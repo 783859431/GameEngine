@@ -2,6 +2,7 @@
 #include "../window/glWindow.h"
 #include "Device.h"
 #include "Texture.h"
+#include <thread>
 void SwapChain::init()
 {
     device = Device::getInstance().device;
@@ -19,7 +20,7 @@ void SwapChain::createSwapChain()
     SwapChainSupportDetails swapChainSupport = querySwapChainSupport(Device::getInstance().gpu, Device::getInstance().surface);
 
     VkSurfaceFormatKHR surfaceFormat = chooseSwapSurfaceFormat(swapChainSupport.formats);
-    VkPresentModeKHR presentMode = VK_PRESENT_MODE_FIFO_KHR; //chooseSwapPresentMode(swapChainSupport.presentModes);
+    VkPresentModeKHR presentMode = VK_PRESENT_MODE_FIFO_KHR;//chooseSwapPresentMode(swapChainSupport.presentModes);
     VkExtent2D extent = chooseSwapExtent(swapChainSupport.capabilities, glWindow::getInstance().getGLFWwindow());
 
     uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
@@ -186,8 +187,8 @@ void SwapChain::recreateSwapchain()
     glm::vec2 wh = glWindow::getInstance().getFrameSize();
     while (wh.x == 0 || wh.y == 0) {
         wh = glWindow::getInstance().getFrameSize();
-        glfwWaitEvents();
-
+        //glfwWaitEvents();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     vkDeviceWaitIdle(device);
     cleanUpSwapchain();

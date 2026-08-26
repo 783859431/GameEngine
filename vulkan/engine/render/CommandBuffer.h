@@ -17,7 +17,16 @@ class CommandBuffer
 {
 
 public:
+	CommandBuffer() {
 
+	}
+	CommandBuffer(const CommandBuffer&) = delete;
+	CommandBuffer& operator=(const CommandBuffer&) = delete;
+	CommandBuffer(CommandBuffer&& other) noexcept
+	{
+		this->m_command = other.m_command;
+		other.m_command = 0;
+	}
 	VkCommandBuffer m_command = VK_NULL_HANDLE;
     //从pool中分配一个commandBuffer 
 	void create(VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY);
@@ -32,7 +41,6 @@ public:
 	//绑定描述符集
 	void bindSets(VkPipelineLayout lay, VkDescriptorSet* sets, uint32_t count, uint32_t first =0, uint32_t dynamicCount =0, uint32_t* dynamicOffset =0);
 	//更新常量数据
-	
 	void pushConst(VkPipelineLayout lay, VkShaderStageFlags stage, void* data, uint32_t size, uint32_t offset = 0);
 	void drawIndexed(uint32_t indexCount, uint32_t instanceCount =1, uint32_t firstIndex =0, int offset=0, uint32_t firstInstance=0);
 	void draw(int vertexCount, int instCount = 1, int firstVertex = 0, int firstIns = 0);

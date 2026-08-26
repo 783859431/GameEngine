@@ -10,7 +10,6 @@ class AnimationSprite:public Sprite
 {	
 	float sheetW;
 	float sheetH;
-
 	float timeCount =0;
 	float frameTime = 0;
 	int  fps = 1;

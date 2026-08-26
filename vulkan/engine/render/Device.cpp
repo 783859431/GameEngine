@@ -10,6 +10,14 @@ const std::vector<const char*> validationLayers = {
 
     "VK_LAYER_KHRONOS_validation"
 };
+void DoTimes(std::function<void(int)> func)
+{
+    for (int i = 0; i < MAX_FRAMES_IN_FLIGHT; i++)
+    {
+        func(i);
+    }
+    
+}
 bool checkDeviceExtensionSupport(VkPhysicalDevice device) {
     uint32_t extensionCount;
     vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
@@ -46,6 +54,8 @@ bool checkValidationLayerSupport() {
 
     return true;
 }
+
+
 bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface) {
     QueueFamilyIndices indices = Utils::findQueueFamilies(device, surface);
     bool extensionsSupported = checkDeviceExtensionSupport(device);
@@ -209,18 +219,17 @@ void Device::chooseGpu()
 
     for (const auto& device : devices) {
 
-        vkGetPhysicalDeviceProperties(device, &props);
-        if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) //判断是否是独立显卡
-        {
-            if (isDeviceSuitable(device, surface))
-            {
-                vkGetPhysicalDeviceProperties(device, &props);
-                uniformAlign = props.limits.minUniformBufferOffsetAlignment;
-                gpu = device;
-                break;
-            }
-
-        }
+      vkGetPhysicalDeviceProperties(device, &props);
+      if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) //判断是否是独立显卡
+      {
+          if (isDeviceSuitable(device, surface))
+          {
+              vkGetPhysicalDeviceProperties(device, &props);
+              uniformAlign = props.limits.minUniformBufferOffsetAlignment;
+              gpu = device;
+              break;
+          }
+      }
 
     }
 

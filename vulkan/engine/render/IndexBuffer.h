@@ -1,22 +1,14 @@
 #pragma once
-#include "vulkan/vulkan.h"
-#include "vk_mem_alloc.h"
-#include "Allocator.h"
-#include <memory>
-class IndexBuffer
+#include "VBuffer.h"
+class IndexBuffer:public VBuffer
 {
 
-	AllocatedBuffer allocBuf;
 public:	
+	IndexBuffer(){}
 	uint32_t indexCount =0;
 	void allocBuffer(uint32_t size);
 	void updateIndex(void* indexBuf, int size);
-	VkBuffer getBuffer();
-	void clean();
-	~IndexBuffer()
-	{
-		if (allocBuf._allocation)
-			clean();
-	}
+	// 通过 VBuffer 继承
+	void alloc(uint32_t size) override;
 };
 

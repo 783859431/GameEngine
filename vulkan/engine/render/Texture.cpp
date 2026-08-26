@@ -158,6 +158,14 @@ void Texture::loadRes(const std::string& path)
     name = path;
 
 }
+void Texture::loadFromMemory(void* data, int width, int height, VkFormat format)
+{
+    createEmpty(width, height, VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,format);
+    copyToGpu((char*)data,getImageMemorySize());
+    createImageView();
+    sampler = SamplerManager::getSamper(SamplerType::LinearClamp);
+
+}
 
 
 
@@ -173,12 +181,18 @@ void Texture::copyToGpu(char* imgRawData,int size) {
 
 void Texture::clean() {
 
+    auto dev = Device::getInstance().device;
     if (img != VK_NULL_HANDLE)
         Allocator::freeImage(this->img,this->allocation);
     if (imageView != VK_NULL_HANDLE)
     {
-        vkDestroyImageView(Device::getInstance().device, imageView, nullptr);
+        vkDestroyImageView(dev, imageView, nullptr);
         imageView = VK_NULL_HANDLE;
+    }
+
+    if (texSet)
+    {
+        vkDestroyDescriptorSetLayout(dev,setlayout.layout,0);
     }
 }
 

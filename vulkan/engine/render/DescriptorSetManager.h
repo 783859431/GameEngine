@@ -6,8 +6,7 @@
 #include <memory>
 #include "Device.h"
 #include <unordered_map>
-#define MAX_IMAGE_SAMPlER  (1<<8)
-#define MAX_UNIFORM_BUFFER (1<<8)
+
 
 class WriteSetHelper {
 
@@ -88,8 +87,8 @@ public:
 	//当前pool的最大的set
 	Usage setUsage = {0}; 
 	
-	void allocSets(std::vector<DSetLayout>& layouts, std::vector<VkDescriptorSet>& sets);
-	void _allocSets(DSetLayout* setLayouts,uint32_t count, VkDescriptorSet* sets);
+	void allocSets(std::vector<DSetLayout*>& layouts, std::vector<VkDescriptorSet>& sets);
+	void _allocSets(DSetLayout** setLayouts,uint32_t count, VkDescriptorSet* sets);
 	void clean();
 };
 
@@ -111,11 +110,11 @@ public :
 	}
 	void init();
 	std::vector< std::unique_ptr<DPool>> pools;
-	void allocSets(std::vector<DSetLayout>& layouts, std::vector<VkDescriptorSet>& outSets);
-	void allocSets(DSetLayout* layouts, int count, VkDescriptorSet* outsets);
+	void allocSets(std::vector<DSetLayout*>& layouts, std::vector<VkDescriptorSet>& outSets);
+	void allocSets(DSetLayout** layouts, int count, VkDescriptorSet* outsets);
 	void allocSet(DSetLayout& layout, VkDescriptorSet* outset);
 	int createPool(std::vector<VkDescriptorPoolSize>& poolSize, uint32_t maxSets);
-	int findOrCreatePool(std::vector<DSetLayout>& layouts);
+	int findOrCreatePool(std::vector<DSetLayout*>& layouts);
 	void clean();
 };
 
