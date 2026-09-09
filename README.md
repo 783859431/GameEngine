@@ -6,4 +6,7 @@ This project is just for learning; I am a beginner on Vulkan. So there are lots 
 2. Font Rendering
 3. SDF Quad and Circle Rendering
 4. Collision by box2D
-5. Audio playing 
+5. Audio playing
+6. Particle System
+7. ImGUI Rendering 
+
