@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\cjson;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vulkan\threeparty\glm;$(SolutionDir)vulkan\threeparty\ogg\include;$(SolutionDir)vulkan\threeparty\GLFW\include;$(SolutionDir)vulkan\threeparty\vorbis\include;$(SolutionDir)vulkan\threeparty\imgui;$(SolutionDir)vulkan\threeparty\openal\include;$(SolutionDir)vulkan\threeparty\box2d\include;$(SolutionDir)vulkan\threeparty\ttf\include;$(SolutionDir)vulkan\threeparty\cjson;$(SolutionDir)vulkan\threeparty\mpg123;E:\vulkan\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -160,6 +160,8 @@
     <None Include="engine\render\shader\poly.vert" />
     <None Include="engine\render\shader\sample.frag" />
     <None Include="engine\render\shader\sample.vert" />
+    <None Include="engine\render\shader\sprite.frag" />
+    <None Include="engine\render\shader\sprite.vert" />
     <None Include="engine\render\shader\vertex.vert">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
@@ -213,6 +215,8 @@
     <ClCompile Include="engine\render\StorageBuffer.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="engine\render\font\TextRender.cpp" />
+    <ClCompile Include="engine\physic\PolyCollider.cpp" />
+    <ClCompile Include="threeparty\cjson\cjson.c" />
     <ClCompile Include="threeparty\imgui\imgui.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_impl_glfw.cpp" />
@@ -220,6 +224,7 @@
     <ClCompile Include="threeparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="threeparty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\render\VBuffer.cpp" />
+    <ClCompile Include="engine\edit\SpEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\imgui\imguiINI.h" />
@@ -274,6 +279,9 @@
     <ClInclude Include="engine\render\VBuffer.h" />
     <ClInclude Include="MyGame.h" />
     <ClInclude Include="engine\render\font\TextRender.h" />
+    <ClInclude Include="engine\physic\PolyCollider.h" />
+    <ClInclude Include="threeparty\cjson\cJSON.h" />
+    <ClInclude Include="engine\edit\SpEditor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

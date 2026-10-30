@@ -11,7 +11,7 @@ class AnimationSprite:public Sprite
 	float sheetW;
 	float sheetH;
 	float timeCount =0;
-	float frameTime = 0;
+	float frameInterval = 0;
 	int  fps = 1;
 	bool isLoop = true;
 	bool isPause = false;
@@ -25,7 +25,7 @@ public:
 	std::function<void()> OnAnimationEnd;
 	void setFps(float fps) {
 		this->fps = fps;
-		frameTime = 1.0 / fps;
+		frameInterval = 1.0 / fps;
 	}
 	void setPause(bool pause)
 	{
@@ -40,7 +40,7 @@ public:
 		if (isPause || isEnd) return;
 		if (animaFrames.size() == 0)return;
 		timeCount += dt;
-		if (timeCount > frameTime)
+		if (timeCount > frameInterval)
 		{
 			timeCount = 0;
 		    currentFrameIndex++;
@@ -54,6 +54,8 @@ public:
 				{
 					isEnd = true;
 					currentFrameIndex--;
+					//if (OnAnimationEnd)
+					//	OnAnimationEnd();
 					//执行某个回调
 				}
 
@@ -65,7 +67,7 @@ public:
 
 };
 
-
+// 我站在原地，希望时间也能在此停留片刻。可惜不能
 //class SheetAnimationPlayer
 //{
 //

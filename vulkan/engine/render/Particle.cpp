@@ -23,7 +23,7 @@ void ParticleSystem::update(float dt)
         _elapsed += dt;
         if (_elapsed < 0.f)
             _elapsed = 0.f;
-        if (_duration != -1.0f && _duration < _elapsed)
+        if ( _duration !=-1 && _duration < _elapsed)
         {
             this->stop();
         }
@@ -259,56 +259,103 @@ void ParticleSystem::init(int numberOfParticles)
     particles.resize(numberOfParticles);
 
     // default, active
+    //_isActive = true;
+
+    //// by default be in mode A:
+    //mode = ParticleMode::Gravity;
+
+    //// duration
+    //_duration = -1.0f;
+
+    //gravity = { 0,2 };
+
+    //// Gravity Mode: speed of particles
+    //speed = 1;
+
+    //speedDeviation = 1;
+
+    //// Gravity Mode: radial
+    //radialAccel = 0;
+    //radialAccelDeviation = 1;
+
+    //// Gravity mode: tangential
+    //tangentialAccel = 0;
+    //tangentialAccelDeviation = 1;
+
+    //// emitter position
+    //_sourcePosition = { 20,0 };
+    //_posDeviation = { 20,0 };
+
+
+    //// angle
+    //_angle = 0;
+    //_angleDeviation = 0;
+
+    //// life of particles
+    //_life = 10;
+    //_lifeDeviation =5;
+
+    //// size, in pixels
+    //_startSize = 5.0f;
+    //_startSizeDeviation = 2.5f;
+    //_endSize = _startSize;
+
+
+    //// emits per second
+    //_emissionRate = 500;
+
+    //// color of particles
+    //_startColor = { 1.0f,1.0f,1.0f,1.0f };
+    //_startColorDeviation = { 0.0f,0.0f,0.0f,0.0f };
+    //_endColor = { 1.0f,1.0f,1.0f,0.0f };
+    //_endColorDeviation = { 0.0f,0.0f,0.0f,0.0f };
+
+
+    _duration = 0.20f;
+
     _isActive = true;
-
-    // by default be in mode A:
     mode = ParticleMode::Gravity;
-
-    // duration
-    _duration = -1.0f;
-
-    gravity = { 0,2 };
+    // Gravity Mode: gravity
+    gravity = { 0,0 };
 
     // Gravity Mode: speed of particles
-    speed = 1;
 
-    speedDeviation = 1;
-
+    speed = 40;
+    speedDeviation = 2;
     // Gravity Mode: radial
     radialAccel = 0;
-    radialAccelDeviation = 1;
+    radialAccelDeviation = 0;
+    // Gravity Mode: tangential
 
-    // Gravity mode: tangential
     tangentialAccel = 0;
-    tangentialAccelDeviation = 1;
+    tangentialAccelDeviation = 0;
+    // angle
+    _angle = 90;
+    _angleDeviation = 360;
 
     // emitter position
-    _sourcePosition = { 20,0 };
-    _posDeviation = { 20,0 };
-
-
-    // angle
-    _angle = 0;
-    _angleDeviation = 0;
+ 
+   _sourcePosition = { 20,15 };
+   _posDeviation = { 1,1};
 
     // life of particles
-    _life = 10;
-    _lifeDeviation =5;
+    _life = 1.0f;
+    _lifeDeviation = 0.0f;
 
     // size, in pixels
-    _startSize = 5.0f;
-    _startSizeDeviation = 2.5f;
-    _endSize = _startSize;
-
+    _startSize = 15.0f;
+    _startSizeDeviation = 12.0f;
+    _endSize = 15.0f;
 
     // emits per second
-    _emissionRate = 500;
+    _emissionRate = 100;
 
+
+    _startColor = { 0.70f,0.10f,0.20f,1.0f };
+    _startColorDeviation = { 0.5f,0.5f,0.5f,1.0f };
+    _endColor = { 0.5f,0.5f,0.5f,0.0f };
+    _endColorDeviation = { 0.5f,0.5f,0.5f,0.0f };
     // color of particles
-    _startColor = { 1.0f,1.0f,1.0f,1.0f };
-    _startColorDeviation = { 0.0f,0.0f,0.0f,0.0f };
-    _endColor = { 1.0f,1.0f,1.0f,0.0f };
-    _endColorDeviation = { 0.0f,0.0f,0.0f,0.0f };
 
     DoTimes([&](int i) 
         {

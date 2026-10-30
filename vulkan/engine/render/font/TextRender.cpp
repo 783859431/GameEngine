@@ -292,4 +292,5 @@ void TextAtlas::genAtlasBitmap(std::vector<char>& atlasBitmap, AtlasBitmapInfo& 
     }
 
 }
+
 bool TextAtlas::m_initialized = false;

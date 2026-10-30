@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "../Global.h"
+#include "imgui.h"
 namespace Input
 {
 	typedef enum ButtonType {
@@ -58,7 +59,7 @@ namespace Input
 		static inline double MouseDeltaY() { return y - lastY; }
 		static  void Update(GLFWwindow* window)
 		{
-	
+			if (ImGui::GetIO().WantCaptureMouse) return;
 			glfwGetCursorPos(window, &x, &y);
 			x = std::clamp((float)x, 0.0f, WINDOW_WIDTH);
 			y = std::clamp((float)y, 0.0f, WINDOW_HEIGHT);

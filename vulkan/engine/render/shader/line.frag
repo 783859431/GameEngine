@@ -5,7 +5,7 @@ layout(location = 2) in vec2 fragPos;
 layout(location = 3) in vec4 inColor;
 layout(location = 4) in float thickness;
 layout(location = 0) out vec4 color;
-float sdLine(
+float sdLine(// calculate the distance from point p to line ab 
     vec2 p,
     vec2 a,
     vec2 b)

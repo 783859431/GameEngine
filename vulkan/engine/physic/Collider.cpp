@@ -35,6 +35,11 @@ void Collider::setTransform(const glm::vec2& position, float angle) {
     b2Body_SetTransform(m_body, { position.x,position.y }, { cosf(r),sinf(r) });
 }
 
+void Collider::setTransform(const Transform2d& trans)
+{
+    b2Body_SetTransform(m_body, { trans.x,trans.y }, { trans.c,trans.s });
+}
+
 
 void Collider::setDensity(float density) {
 
@@ -93,6 +98,16 @@ void Collider::setColliderFilter(uint32_t category, uint32_t mask, int groupInde
     b2Shape_SetFilter(m_shape, filter);
 }
 
+void Collider::setBodyUserData(void* data)
+{
+    b2Body_SetUserData( m_body,data);
+}
+
+void* Collider::getBodyUserData()
+{
+    return b2Body_GetUserData(m_body);
+}
+
 void Collider::applyForce(const glm::vec2& force)
 {
     b2Body_ApplyForceToCenter(m_body, { force.x,force.y }, true);
@@ -107,6 +122,13 @@ void Collider::applyForce(const glm::vec2& force, const glm::vec2& point)
 void Collider::applyTorque(float torque)
 {
     b2Body_ApplyTorque(m_body, torque, true);
+    
+}
+
+void Collider::applyLinearImplush(const glm::vec2 impulse)
+{
+    b2Body_ApplyLinearImpulseToCenter(m_body, { impulse.x,impulse.y }, true);
+    //b2Body_ApplyLinearImpulse();
 }
 
 void Collider::enableSensorEvent(bool flag)
@@ -136,9 +158,16 @@ void Collider::enableContactEvent(bool flag)
     b2Shape_EnableContactEvents(m_shape, flag);
 }
 
+Transform2d Collider::getTransform()
+{
+   b2Transform trs = b2Body_GetTransform(m_body);
+   return { trs.p.x,trs.p.y,trs.q.c,trs.q.s };
+}
+
 // ---------- 获取数据 ----------
 glm::vec2 Collider::getPosition() const {
     b2Vec2 pos = b2Body_GetPosition(m_body);
+    
     return glm::vec2(pos.x, pos.y);
 }
 
@@ -185,7 +214,7 @@ void Collider::setMassData(b2MassData& data)
 
 void Collider::onHitEvent(Collider* other, b2ContactHitEvent& hitevent)
 {
-    if (onHit!=nullptr)
+    if (onHit)
         onHit(other,hitevent);
 
 }

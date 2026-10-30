@@ -123,9 +123,9 @@ bool AudioPlayer::play2d()
         alSourcei(_alSource, AL_BUFFER, 0); CHECK_AL_ERROR_DEBUG();// unbind buffer, just in case the buffer is still bound to source when play2d is called again after stop.
         alSourcef(_alSource, AL_PITCH, 1.0f); CHECK_AL_ERROR_DEBUG();// 播放速度
         alSourcef(_alSource, AL_GAIN, _volume); CHECK_AL_ERROR_DEBUG();// 音量
-        alSourcei(_alSource, AL_LOOPING, AL_FALSE); CHECK_AL_ERROR_DEBUG();
+        alSourcei(_alSource, AL_LOOPING, AL_FALSE); CHECK_AL_ERROR_DEBUG();//循环
 
-        if (_audioCache->_queBufferFrames == 0)
+        if (_audioCache->_queBufferFrames == 0)// 没有buffer 需要播放了
         {
             if (_loop) {
                 alSourcei(_alSource, AL_LOOPING, AL_TRUE);
@@ -134,9 +134,9 @@ bool AudioPlayer::play2d()
         }
         else
         {
-            alGenBuffers(3, _bufferIds);
+            alGenBuffers(3, _bufferIds);// 
 
-            auto alError = alGetError();
+            auto alError = alGetError();// 
             if (alError == AL_NO_ERROR)
             {
                 for (int index = 0; index < QUEUEBUFFER_NUM; ++index)
@@ -226,9 +226,9 @@ void AudioPlayer::rotateBufferThread(int offsetFrame)
             alGetSourcei(_alSource, AL_SOURCE_STATE, &sourceState);
             if (sourceState == AL_PLAYING) { // source is playing, check if any buffer is processed
                 alGetSourcei(_alSource, AL_BUFFERS_PROCESSED, &bufferProcessed);//空闲的buffer数量
-                while (bufferProcessed > 0) {
+                while (bufferProcessed > 0) {//驱动有空闲的缓冲区
                     bufferProcessed--;
-                    if (_timeDirty) {// seek to the new position if time is dirty
+                    if (_timeDirty) {//  seek to the new position if time is dirty
                         _timeDirty = false;
                         offsetFrame = (int)(_currTime * decoder->getSampleRate());
                         decoder->seek(offsetFrame);
@@ -244,7 +244,7 @@ void AudioPlayer::rotateBufferThread(int offsetFrame)
                             }
                         }
                     }
-
+                    //读取音频帧
                     framesRead = decoder->readFixedFrames(framesToRead, tmpBuffer);
 
                     if (framesRead == 0) {//没有音频数据了
@@ -259,7 +259,7 @@ void AudioPlayer::rotateBufferThread(int offsetFrame)
                     }
                     //填充新的音频数据
                     ALuint bid;
-                    alSourceUnqueueBuffers(_alSource, 1, &bid);
+                    alSourceUnqueueBuffers(_alSource, 1, &bid);//获取空闲缓冲区
                     alBufferData(bid, _audioCache->_format, tmpBuffer, framesRead * decoder->getBytesPerFrame(), decoder->getSampleRate());
                     alSourceQueueBuffers(_alSource, 1, &bid);
                 }

@@ -24,6 +24,8 @@
     <None Include="engine\render\shader\particle.frag" />
     <None Include="engine\render\shader\font.vert" />
     <None Include="engine\render\shader\font.frag" />
+    <None Include="engine\render\shader\sprite.frag" />
+    <None Include="engine\render\shader\sprite.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\logger\Logger.cpp" />
@@ -80,6 +82,9 @@
     <ClCompile Include="engine\imgui\imguiINI.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="engine\render\font\TextRender.cpp" />
+    <ClCompile Include="threeparty\cjson\cjson.c" />
+    <ClCompile Include="engine\edit\SpEditor.cpp" />
+    <ClCompile Include="engine\physic\PolyCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\logger\Logger.h" />
@@ -134,5 +139,8 @@
     <ClInclude Include="engine\imgui\imguiINI.h" />
     <ClInclude Include="MyGame.h" />
     <ClInclude Include="engine\render\font\TextRender.h" />
+    <ClInclude Include="threeparty\cjson\cJSON.h" />
+    <ClInclude Include="engine\edit\SpEditor.h" />
+    <ClInclude Include="engine\physic\PolyCollider.h" />
   </ItemGroup>
 </Project>

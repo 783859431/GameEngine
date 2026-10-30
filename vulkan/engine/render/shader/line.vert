@@ -1,7 +1,7 @@
 #version 450
-layout(location = 0) in vec2 point1;
-layout(location = 1) in vec2 point2;
-layout(location = 2) in vec4 lineColor;
+layout(location = 0) in vec2 point1;// line point
+layout(location = 1) in vec2 point2;// line point 
+layout(location = 2) in vec4 lineColor;// line color 
 
 layout(location = 0) out vec2 outP1;
 layout(location = 1) out vec2 outP2;
@@ -39,13 +39,12 @@ void main() {
     float w = abs( point1.x- point2.x);
     float h = abs( point1.y- point2.y);
     vec2 center = 0.5 * (point1 + point2);
-    float maxWidth = max(w,h);//等到包围盒长边
+    float maxWidth = max(w,h);//包围盒长边
     float scale =  0.5 * maxWidth;
     float invScale = 1 / scale;
 
     outP1 = invScale * (point1 - center);
     outP2 = invScale * (point2 - center);
-
 
     float pixelScale = 20.0f;
     thickness = 2.0f / pixelScale * invScale;

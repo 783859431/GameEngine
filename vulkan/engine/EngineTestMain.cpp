@@ -11,7 +11,7 @@ struct VP {
 extern VkDescriptorSet g_set0[];
 extern VkDescriptorSetLayout g_layout;
 extern VkRenderPass g_renderPass;
-VP mats;
+//VP mats;
 
 void VulkanEngine::Init()
 {
@@ -196,7 +196,6 @@ void VulkanEngine::MessageLoop()
     while (!window.shouldClose())
     {
         glfwPollEvents();
-    
     }
     this->destroy = true;
     th.join();
@@ -206,11 +205,7 @@ void VulkanEngine::MessageLoop()
 
 void VulkanEngine::CleanUp()
 {
-   
-
     UserClean();
     swapchain.clean();
     vkDestroyDescriptorSetLayout(device, setLayout.layout,0);
-
-
 }

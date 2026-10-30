@@ -2,11 +2,13 @@
 #include "glm/glm.hpp"
 #include "box2d/box2d.h"
 #include <functional>
+#include "../render/PolygonRender.h"
 enum ColliderType
 {
     NONE,
     BOX,
-    BALL
+    BALL,
+    POLY
 };
 class Collider
 {
@@ -22,6 +24,7 @@ public:
     virtual ~Collider();
     // ---------- 物理属性设置 ----------
     void setTransform(const glm::vec2& position, float angle = 0.0f);
+    void setTransform(const Transform2d& trans);
     void setDensity(float density);                    //密度
     void setFriction(float friction);                  //摩擦力
     void setRestitution(float restitution);            //弹性系数
@@ -32,10 +35,12 @@ public:
     void setLinearDamping(float x);                    //线速度阻尼
     void setAngularDamping(float x);                   //角速度阻尼            
     void setColliderFilter(uint32_t category, uint32_t mask, int groupIndex = 0);
+    void setBodyUserData(void* data);
+    void* getBodyUserData();
     void applyForce(const glm::vec2& force);           //中心施加力
     void applyForce(const glm::vec2& force, const glm::vec2& point); //在特定点施加力
     void applyTorque(float torque);                    //使用力矩
-
+    void applyLinearImplush(const glm::vec2 impulse);
 
 
     void enableSensorEvent(bool);
@@ -44,6 +49,7 @@ public:
     void enableContactEvent(bool);
 
     // ---------- 获取数据 ----------
+    Transform2d getTransform();
     glm::vec2 getPosition() const;
     float getAngle() const;
     glm::vec2 getRot() const;
